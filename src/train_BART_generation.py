@@ -42,7 +42,7 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
             running_loss = 0.0
 
             # Iterate over data.
-            for input_embeddings, input_masks, input_mask_invert, target_ids, target_mask, sentiment_labels in tqdm(dataloaders[phase]):
+            for input_embeddings, seq_len, input_masks, input_mask_invert, target_ids, target_mask, sentiment_labels, sent_level_EEG in tqdm(dataloaders[phase]):
                 
                 # load in batch
                 input_embeddings_batch = input_embeddings.to(device).float()
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 
     batch_size = 32
     # print('![Debug] using train batch size 1')
-    save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints' 
+    save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation' 
     model_name = f'finetune_BART_EEG_feature_2steptraining_b32_20_15_51e-5_51e-7_use_label_{dataset_setting}_setting_7-1_no_PE_add_srcmask'
     output_checkpoint_name_best = save_path + f'/best/{model_name}.pt' 
     output_checkpoint_name_last = save_path + f'/last/{model_name}.pt' 

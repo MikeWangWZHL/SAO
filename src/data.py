@@ -9,6 +9,8 @@ from glob import glob
 from transformers import BartTokenizer
 from tqdm import tqdm
 
+# TODO: add sentence level EEG tensor
+
 # macro
 sentiment_labels = json.load(open('/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/sentiment_labels/sentiment_labels.json'))
 
@@ -28,9 +30,19 @@ def get_input_sample(sent_obj, tokenizer, eeg_type = 'TRT', bands = ['_t1','_t2'
         frequency_features = []
         for band in bands:
             frequency_features.append(word_obj['word_level_EEG'][eeg_type][eeg_type+band])
-        embedding = np.concatenate(frequency_features)
-        assert len(embedding) == 105*len(bands)
-        return_tensor = torch.from_numpy(embedding)
+        word_eeg_embedding = np.concatenate(frequency_features)
+        assert len(word_eeg_embedding) == 105*len(bands)
+        return_tensor = torch.from_numpy(word_eeg_embedding)
+        return normalize_1d(return_tensor)
+
+    def get_sent_eeg(sent_obj, bands):
+        sent_eeg_features = []
+        for band in bands:
+            key = 'mean'+band
+            sent_eeg_features.append(sent_obj['sentence_level_EEG'][key])
+        sent_eeg_embedding = np.concatenate(sent_eeg_features)
+        assert len(sent_eeg_embedding) == 105*len(bands)
+        return_tensor = torch.from_numpy(sent_eeg_embedding)
         return normalize_1d(return_tensor)
 
     input_sample = {}
@@ -40,6 +52,13 @@ def get_input_sample(sent_obj, tokenizer, eeg_type = 'TRT', bands = ['_t1','_t2'
     
     input_sample['target_ids'] = target_tokenized['input_ids'][0]
     
+    # get sentence level EEG features
+    sent_level_eeg_tensor = get_sent_eeg(sent_obj, bands)
+    if torch.isnan(sent_level_eeg_tensor).any():
+        # print('[NaN sent level eeg]: ', target_string)
+        return None
+    input_sample['sent_level_EEG'] = sent_level_eeg_tensor
+
     # get sentiment label
     # handle some wierd case
     if 'emp11111ty' in target_string:
@@ -47,7 +66,7 @@ def get_input_sample(sent_obj, tokenizer, eeg_type = 'TRT', bands = ['_t1','_t2'
     if 'film.1' in target_string:
         target_string = target_string.replace('film.1','film.')
     assert target_string in sentiment_labels
-    input_sample['sentiment_label'] = torch.tensor(sentiment_labels[target_string])
+    input_sample['sentiment_label'] = torch.tensor(sentiment_labels[target_string]+1) # 0:Negative, 1:Neutral, 2:Positive
     
     # get input embeddings
     word_embeddings = []
@@ -96,6 +115,12 @@ def get_input_sample(sent_obj, tokenizer, eeg_type = 'TRT', bands = ['_t1','_t2'
 
     # mask out target padding for computing cross entropy loss
     input_sample['target_mask'] = target_tokenized['attention_mask'][0]
+    input_sample['seq_len'] = len(sent_obj['word'])
+    
+    # clean 0 length data
+    if input_sample['seq_len'] == 0:
+        print('discard length zero instance: ', target_string)
+        return None
 
     return input_sample
 
@@ -166,7 +191,16 @@ class ZuCo_dataset(Dataset):
 
     def __getitem__(self, idx):
         input_sample = self.inputs[idx]
-        return input_sample['input_embeddings'], input_sample['input_attn_mask'], input_sample['input_attn_mask_invert'], input_sample['target_ids'], input_sample['target_mask'], input_sample['sentiment_label']
+        return (
+            input_sample['input_embeddings'], 
+            input_sample['seq_len'],
+            input_sample['input_attn_mask'], 
+            input_sample['input_attn_mask_invert'],
+            input_sample['target_ids'], 
+            input_sample['target_mask'], 
+            input_sample['sentiment_label'], 
+            input_sample['sent_level_EEG']
+        )
         # keys: input_embeddings, input_attn_mask, input_attn_mask_invert, target_ids, target_mask, 
         
 
@@ -335,10 +369,14 @@ if __name__ == '__main__':
     bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
     print(f'[INFO]using bands {bands_choice}')
     train_set = ZuCo_dataset(whole_dataset_dict, 'train', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
- 
-    print(train_set[0])
-    print(train_set[1])
-    print(train_set[2])
+    dev_set = ZuCo_dataset(whole_dataset_dict, 'dev', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
+    test_set = ZuCo_dataset(whole_dataset_dict, 'test', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
+    # print(train_set[0])
+    # print(train_set[1])
+    # print(train_set[2])
+    print('trainset size:',len(train_set))
+    print('devset size:',len(dev_set))
+    print('testset size:',len(test_set))
     # print('size of trainset:',len(trainset))
     # print('size of input embeddings:', trainset[0][0].size())
     # print('size of input attention mask:', trainset[0][1].size())
