@@ -1,11 +1,12 @@
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.data
-from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig
+from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig, BertForSequenceClassification
 import math
 import numpy as np
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
+"""MLP baseline using sentence level eeg"""
 # using sent level EEG, MLP baseline for sentiment
 class BaselineMLPSentence(nn.Module):
     def __init__(self, input_dim = 840, hidden_dim = 128, output_dim = 3):
@@ -27,6 +28,7 @@ class BaselineMLPSentence(nn.Module):
         return out
 
 
+"""bidirectional LSTM baseline using word level eeg"""
 class BaselineLSTM(nn.Module):
     def __init__(self, input_dim = 840, hidden_dim = 256, output_dim = 3):
         super(BaselineLSTM, self).__init__()
@@ -47,6 +49,7 @@ class BaselineLSTM(nn.Module):
         return out
 
 
+"""transformers baseline using word level eeg"""
 # modified from BertPooler
 class Pooler(nn.Module):
     def __init__(self, hidden_size):
@@ -91,8 +94,49 @@ class PositionalEncoding(nn.Module):
 #     def forward(self, x):
 
 
-# class FineTunePretrainedBertWord(nn.Module):
-#     def __init__(self, input_dim = 840, hidden_dim = 128, output_dim = 3):
-#         super(FineTunePretrainedBertWord, self).__init__()
-    
-#     def forward(self, x):
+""" Finetuning from a pretrained language model Bert"""
+class NaiveFineTunePretrainedBert(nn.Module):
+    def __init__(self, input_dim = 840, hidden_dim = 768, output_dim = 3):
+        super(NaiveFineTunePretrainedBert, self).__init__()
+        # mapping hidden states dimensioin
+        self.fc1 = nn.Linear(input_dim, hidden_dim)
+        self.pretrained_Bert = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
+
+    def forward(self, input_embeddings_batch, input_masks_batch, labels):
+        embedding = F.relu(self.fc1(input_embeddings_batch))
+        out = self.pretrained_Bert(inputs_embeds = embedding, attention_mask = input_masks_batch, labels = labels, return_dict = True)
+        return out
+
+""" Finetuning from a pretrained language model BART, two step training"""
+class FineTunePretrainedBartTwoStep(nn.Module):
+    def __init__(self, pretrained_layers, in_feature = 840, decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048):
+        super(FineTunePretrainedBartTwoStep, self).__init__()
+        
+        self.pretrained_BART = pretrained_layers
+        # additional transformer encoder, following BART paper about 
+        self.additional_encoder_layer = nn.TransformerEncoderLayer(d_model=in_feature, nhead=additional_encoder_nhead,  dim_feedforward = additional_encoder_dim_feedforward, batch_first=True)
+        self.additional_encoder = nn.TransformerEncoder(self.additional_encoder_layer, num_layers=6)
+        
+        # NOTE: add positional embedding?
+        # print('[INFO]adding positional embedding')
+        # self.positional_embedding = PositionalEncoding(in_feature)
+
+        self.fc1 = nn.Linear(in_feature, decoder_embedding_size)
+
+    def forward(self, input_embeddings_batch, input_masks_batch, input_masks_invert, labels):
+        """input_embeddings_batch: batch_size*Seq_len*840"""
+        """input_mask: 1 is not masked, 0 is masked"""
+        """input_masks_invert: 1 is masked, 0 is not masked"""
+        """labels: sentitment labels 0,1,2"""
+        
+        # NOTE: add positional embedding?
+        # input_embeddings_batch = self.positional_embedding(input_embeddings_batch) 
+
+        # use src_key_padding_masks
+        encoded_embedding = self.additional_encoder(input_embeddings_batch, src_key_padding_mask = input_masks_invert) 
+        # encoded_embedding = self.additional_encoder(input_embeddings_batch) 
+        
+        encoded_embedding = F.relu(self.fc1(encoded_embedding))
+        out = self.pretrained_BART(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = labels)                    
+        
+        return out

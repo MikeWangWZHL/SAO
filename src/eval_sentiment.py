@@ -135,7 +135,9 @@ if __name__ == '__main__':
     num_epochs = 1
 
     dataset_setting = 'unique_subj'
-    checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment/best/Baseline_LSTM_h256_0.01_b32_unique_subj_7-6.pt'
+    # checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment/best/Baseline_LSTM_h256_0.01_b32_unique_subj_7-6.pt'
+    checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment/best/Baseline_LSTM_h256_0.01_b16_unique_subj_7-6.pt'
+    print('loading checkpoint:', checkpoint_path)
     # dataset_setting = 'unique_sent'
     model_name = 'LSTM_h256'
     batch_size = 1
