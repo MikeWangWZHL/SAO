@@ -13,9 +13,9 @@ import time
 import copy
 from tqdm import tqdm
 
-from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig, BartForSequenceClassification
+from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig, BartForSequenceClassification, BertTokenizer, BertConfig, BertForSequenceClassification, RobertaTokenizer, RobertaForSequenceClassification
 from data import ZuCo_dataset
-from model_sentiment import FineTunePretrainedBartTwoStep
+from model_sentiment import FineTunePretrainedTwoStep
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
@@ -42,14 +42,11 @@ def flat_accuracy_top_k(preds, labels,k):
             right_count+=1
     return right_count/len(labels)
 
-def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num_epochs=25, checkpoint_path_best = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/best/test.pt', checkpoint_path_last = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/last/test.pt'):
+def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num_epochs=25, checkpoint_path_best = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/best/test.pt', checkpoint_path_last = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/last/test.pt', best_loss = 100000000000, best_acc = 0.0):
     # modified from: https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
     since = time.time()
       
     best_model_wts = copy.deepcopy(model.state_dict())
-    best_loss = 100000000000
-    best_acc = 0.0
-    
 
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
@@ -76,7 +73,7 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
-                if isinstance(model, FineTunePretrainedBartTwoStep):
+                if isinstance(model, FineTunePretrainedTwoStep):
                     output = model(input_word_eeg_features, input_masks, input_mask_invert, sentiment_labels)
                     logits = output.logits
                     loss = output.loss
@@ -131,34 +128,38 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
         outlog.write('Best val acc: {:4f}'.format(best_acc))
     # load best model weights
     model.load_state_dict(best_model_wts)
-    return model
+    return model, best_acc, best_loss
 
 
 if __name__ == '__main__':
     
     ''' config param'''
     num_epochs_step1 = 20
-    num_epochs_step2 = 20
-    step1_lr = 5*1e-5
-    step2_lr = 5*1e-7
+    num_epochs_step2 = 15
+    step1_lr = 1e-3
+    step2_lr = 1e-3
 
-    dataset_setting = 'unique_subj'
+    # dataset_setting = 'unique_subj'
+    dataset_setting = 'unique_sent'
     subject_choice = 'ALL'
     # subject_choice = 'ZAB'
     print(f'![Debug]using {subject_choice}')
-    eeg_type_choice = 'TRT'
+    eeg_type_choice = 'GD'
     print(f'[INFO]eeg type {eeg_type_choice}')
     # bands_choice = ['_t1'] 
     bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
     print(f'[INFO]using bands {bands_choice}')
 
     batch_size = 32
-    # print('![Debug] using train batch size 1')
+
+    # model_name = 'finetune_Bert'
+    model_name = 'finetune_RoBerta'
+    
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment' 
-    model_name = f'Sentitment_finetune_BART_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_{eeg_type_choice}_7-7_no_PE_add_srcmask'
-    output_checkpoint_name_best = save_path + f'/best/{model_name}.pt' 
-    output_checkpoint_name_last = save_path + f'/last/{model_name}.pt' 
-    output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/{model_name}.txt'
+    save_name = f'Sentitment_{model_name}_subj-{subject_choice}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_{eeg_type_choice}_7-8_no_PE_add_srcmask'
+    output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
+    output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
+    output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/sentiment/{save_name}.txt'
 
 
     ''' set random seeds '''
@@ -179,16 +180,23 @@ if __name__ == '__main__':
     print(f'[INFO]using device {dev}')
 
 
-    ''' set up dataloader '''
+    ''' load pickle '''
     # dataset_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset_skip_zerofixation.pickle' 
     dataset_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset-with-tokens_6-25.pickle' 
     with open(dataset_path, 'rb') as handle:
         whole_dataset_dict = pickle.load(handle)
     
-    print('[INFO]pretrained checkpoint: facebook/bart-base')
-    tokenizer = BartTokenizer.from_pretrained('facebook/bart-base')
-    # tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
+    '''tokenizer'''
+    if model_name == 'finetune_Bert':
+        print('[INFO]pretrained checkpoint: bert-base-cased')
+        tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+    
+    elif model_name == 'finetune_RoBerta':
+        print('[INFO]pretrained checkpoint: roberta-base')
+        tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 
+
+    ''' set up dataloader '''
     # train dataset
     train_set = ZuCo_dataset(whole_dataset_dict, 'train', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
     # dev dataset
@@ -208,13 +216,17 @@ if __name__ == '__main__':
     dataloaders = {'train':train_dataloader, 'dev':val_dataloader}
 
     ''' set up model '''
-    pretrained_bart = BartForSequenceClassification.from_pretrained('facebook/bart-base', num_labels = 3)
-    # pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-base')
-    model = FineTunePretrainedBartTwoStep(pretrained_bart, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+    # pretrained_bart = BartForSequenceClassification.from_pretrained('facebook/bart-base', num_labels = 3)
+    if model_name == 'finetune_Bert':
+        pretrained = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
+    elif model_name == 'finetune_RoBerta':
+        pretrained = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
+
+    model = FineTunePretrainedTwoStep(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 768, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
     model.to(device)
     
     ''' training loop '''
-
+    
     ######################################################
     '''step one trainig: freeze most of BART params'''
     ######################################################
@@ -225,12 +237,7 @@ if __name__ == '__main__':
                 continue
             else:
                 param.requires_grad = False
-    
-    # sanity check
-    for name, param in model.named_parameters():
-        if param.requires_grad:
-            print(name)
-    quit()
+
 
     ''' set up optimizer and scheduler'''
     optimizer_step1 = optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=step1_lr, momentum=0.9)
@@ -243,13 +250,17 @@ if __name__ == '__main__':
 
     print('=== start Step1 training ... ===')
     # return best loss model from step1 training
-    model = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs_step1, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
+    model, best_acc_step1, best_loss_step1 = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs_step1, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
     
     ######################################################
     '''step two trainig: update whole model for a few iterations'''
     ######################################################
     for name, param in model.named_parameters():
         param.requires_grad = True
+
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            print(name)
 
     ''' set up optimizer and scheduler'''
     optimizer_step2 = optim.SGD(model.parameters(), lr=step2_lr, momentum=0.9)
@@ -261,7 +272,7 @@ if __name__ == '__main__':
     
     print()
     print('=== start Step2 training ... ===')
-    trained_model = train_model(dataloaders, device, model, criterion, optimizer_step2, exp_lr_scheduler_step2, num_epochs=num_epochs_step2, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
+    trained_model = train_model(dataloaders, device, model, criterion, optimizer_step2, exp_lr_scheduler_step2, num_epochs=num_epochs_step2, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last, best_acc = best_acc_step1, best_loss = best_loss_step1)
 
     # '''save checkpoint'''
     # torch.save(trained_model.state_dict(), os.path.join(save_path,output_checkpoint_name))

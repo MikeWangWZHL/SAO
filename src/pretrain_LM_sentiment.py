@@ -5,7 +5,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.optim import lr_scheduler
 from torch.utils.data import Dataset, DataLoader, RandomSampler, SequentialSampler
-from torch.nn.utils.rnn import pack_padded_sequence 
 import pickle
 import json
 import matplotlib.pyplot as plt
@@ -14,9 +13,9 @@ import time
 import copy
 from tqdm import tqdm
 
-from transformers import BertTokenizer, BertLMHeadModel, BertConfig
+from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig, BartForSequenceClassification, BertTokenizer, BertConfig, BertForSequenceClassification, RobertaTokenizer, RobertaForSequenceClassification
 from data import ZuCo_dataset
-from model_sentiment import BaselineMLPSentence, BaselineLSTM, NaiveFineTunePretrainedBert
+from model_sentiment import FineTunePretrainedTwoStep
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
@@ -43,7 +42,7 @@ def flat_accuracy_top_k(preds, labels,k):
             right_count+=1
     return right_count/len(labels)
 
-def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num_epochs=25, checkpoint_path_best = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/best/test.pt', checkpoint_path_last = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/last/test.pt'):
+def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num_epochs=25, checkpoint_path_best = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/test.pt', checkpoint_path_last = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/last/test.pt'):
     # modified from: https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
     since = time.time()
       
@@ -69,28 +68,22 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
             # Iterate over data.
             for input_word_eeg_features, seq_lens, input_masks, input_mask_invert, target_ids, target_mask, sentiment_labels, sent_level_EEG in tqdm(dataloaders[phase]):
                 
-                input_word_eeg_features = input_word_eeg_features.to(device).float()
-                sent_level_EEG = sent_level_EEG.to(device)
-                input_masks = input_masks.to(device)
+                # input_word_eeg_features = input_word_eeg_features.to(device).float()
+                # input_masks = input_masks.to(device)
+                # input_mask_invert = input_mask_invert.to(device)
+                target_ids = target_ids.to(device)
+                target_mask = target_mask.to(device)
                 sentiment_labels = sentiment_labels.to(device)
 
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
-                if isinstance(model, BaselineMLPSentence):
-                    # forward
-                    logits = model(sent_level_EEG) # before softmax
-                    # calculate loss
-                    loss = criterion(logits, sentiment_labels)
-                
-                elif isinstance(model, BaselineLSTM):
-                    x_packed = pack_padded_sequence(input_word_eeg_features, seq_lens, batch_first=True, enforce_sorted=False)
-                    logits = model(x_packed)
-                    # calculate loss
-                    loss = criterion(logits, sentiment_labels)
-                
-                elif isinstance(model, NaiveFineTunePretrainedBert):
-                    output = model(input_word_eeg_features, input_masks, sentiment_labels)
+                if isinstance(model, BertForSequenceClassification):
+                    output = model(input_ids = target_ids, attention_mask = target_mask, return_dict = True, labels = sentiment_labels)
+                    logits = output.logits
+                    loss = output.loss
+                elif isinstance(model, RobertaForSequenceClassification):
+                    output = model(input_ids = target_ids, attention_mask = target_mask, return_dict = True, labels = sentiment_labels)
                     logits = output.logits
                     loss = output.loss
 
@@ -142,46 +135,41 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
     with open(output_log_file_name, 'w') as outlog:
         outlog.write(f'best val loss: {best_loss}\n')
         outlog.write('Best val acc: {:4f}'.format(best_acc))
-
     # load best model weights
     model.load_state_dict(best_model_wts)
     return model
 
+
 if __name__ == '__main__':
     
     ''' config param'''
-    num_epochs = 30
-    step_lr = 1e-3
+    num_epochs_step1 = 20
+    num_epochs_step2 = 10
+    step1_lr = 1e-3
+    step2_lr = 1e-5
 
-    '''dataset division'''
-    # dataset_setting = 'unique_subj'
     dataset_setting = 'unique_sent'
-
+    # dataset_setting = 'unique_subj'
     subject_choice = 'ALL'
     # subject_choice = 'ZAB'
     print(f'![Debug]using {subject_choice}')
     eeg_type_choice = 'GD'
-    # eeg_type_choice = 'FFD'
-    # eeg_type_choice = 'TRT'
     print(f'[INFO]eeg type {eeg_type_choice}')
     # bands_choice = ['_t1'] 
     bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
     print(f'[INFO]using bands {bands_choice}')
-    
-    '''model name'''
-    # model_name = 'Baseline_MLP'
-    # model_name = 'Baseline_LSTM_h256'
-    # model_name = 'NaiveFineTuneBert'
 
     batch_size = 32
-    save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment' 
-    save_name = f'{model_name}_{step_lr}_b{batch_size}_{dataset_setting}_{eeg_type_choice}_7-6'
+    # model_name = 'pretrain_Bert'
+    model_name = 'pretrain_RoBerta'
+    # print('![Debug] using train batch size 1')
+    save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained' 
+    save_name = f'Sentitment_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{step1_lr}_{dataset_setting}_{eeg_type_choice}_7-8'
     output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
     output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
-    output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/sentiment/{save_name}.txt'
+    output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/pretrain/{save_name}.txt'
 
 
-    
     ''' set random seeds '''
     seed_val = 312
     np.random.seed(seed_val)
@@ -200,15 +188,19 @@ if __name__ == '__main__':
     print(f'[INFO]using device {dev}')
 
 
-    ''' load pickle'''
+    ''' load pickle '''
     # dataset_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset_skip_zerofixation.pickle' 
     dataset_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset-with-tokens_6-25.pickle' 
     with open(dataset_path, 'rb') as handle:
         whole_dataset_dict = pickle.load(handle)
     
-    '''set up tokenizer'''
-    # tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
-    tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+    '''tokenizer'''
+    if model_name == 'pretrain_Bert':
+        print('[INFO]pretrained checkpoint: bert-base-cased')
+        tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+    elif model_name == 'pretrain_RoBerta':
+        print('[INFO]pretrained checkpoint: roberta-base')
+        tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 
     ''' set up dataloader '''
     # train dataset
@@ -230,26 +222,29 @@ if __name__ == '__main__':
     dataloaders = {'train':train_dataloader, 'dev':val_dataloader}
 
     ''' set up model '''
+    if model_name == 'pretrain_Bert':
+        model = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
+    elif model_name == 'pretrain_RoBerta':
+        model = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
     
-    # print('[INFO]Model: BaselineMLP')
-    # model = BaselineMLPSentence(input_dim = 840, hidden_dim = 128, output_dim = 3)
-
-    # print('[INFO]Model: BaselineLSTM')
-    # model = BaselineLSTM(input_dim = 840, hidden_dim = 256, output_dim = 3)
-    
-    print('[INFO]Model: NaiveFineTuneBert')
-    model = NaiveFineTunePretrainedBert(input_dim = 840, hidden_dim = 768, output_dim = 3)
     model.to(device)
     
     ''' training loop '''
 
-    ''' set up optimizer and scheduler'''
-    optimizer_step1 = optim.SGD(model.parameters(), lr=step_lr, momentum=0.9)
-    exp_lr_scheduler_step1 = lr_scheduler.StepLR(optimizer_step1, step_size=10, gamma=0.5)
+    ######################################################
+    '''step one trainig: freeze most of BART params'''
+    ######################################################
 
+    ''' set up optimizer and scheduler'''
+    optimizer_step1 = optim.SGD(model.parameters(), lr=step1_lr, momentum=0.9)
+
+    exp_lr_scheduler_step1 = lr_scheduler.StepLR(optimizer_step1, step_size=10, gamma=0.1)
+
+    # TODO: rethink about the loss function
     ''' set up loss function '''
     criterion = nn.CrossEntropyLoss()
 
-    print('=== start training ... ===')
+    print('=== start Step1 training ... ===')
     # return best loss model from step1 training
-    model = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
+    model = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs_step1, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
+    

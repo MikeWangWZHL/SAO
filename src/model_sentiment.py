@@ -108,11 +108,11 @@ class NaiveFineTunePretrainedBert(nn.Module):
         return out
 
 """ Finetuning from a pretrained language model BART, two step training"""
-class FineTunePretrainedBartTwoStep(nn.Module):
+class FineTunePretrainedTwoStep(nn.Module):
     def __init__(self, pretrained_layers, in_feature = 840, decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048):
-        super(FineTunePretrainedBartTwoStep, self).__init__()
+        super(FineTunePretrainedTwoStep, self).__init__()
         
-        self.pretrained_BART = pretrained_layers
+        self.pretrained_layers = pretrained_layers
         # additional transformer encoder, following BART paper about 
         self.additional_encoder_layer = nn.TransformerEncoderLayer(d_model=in_feature, nhead=additional_encoder_nhead,  dim_feedforward = additional_encoder_dim_feedforward, batch_first=True)
         self.additional_encoder = nn.TransformerEncoder(self.additional_encoder_layer, num_layers=6)
@@ -137,6 +137,6 @@ class FineTunePretrainedBartTwoStep(nn.Module):
         # encoded_embedding = self.additional_encoder(input_embeddings_batch) 
         
         encoded_embedding = F.relu(self.fc1(encoded_embedding))
-        out = self.pretrained_BART(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = labels)                    
+        out = self.pretrained_layers(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = labels)                    
         
         return out
