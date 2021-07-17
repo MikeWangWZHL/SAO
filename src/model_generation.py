@@ -10,7 +10,7 @@ class BrainTranslator(nn.Module):
     def __init__(self, pretrained_layers, in_feature = 840, decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048):
         super(BrainTranslator, self).__init__()
         
-        self.pretrained_BART = pretrained_layers
+        self.pretrained = pretrained_layers
         # additional transformer encoder, following BART paper about 
         self.additional_encoder_layer = nn.TransformerEncoderLayer(d_model=in_feature, nhead=additional_encoder_nhead,  dim_feedforward = additional_encoder_dim_feedforward, batch_first=True)
         self.additional_encoder = nn.TransformerEncoder(self.additional_encoder_layer, num_layers=6)
@@ -34,8 +34,23 @@ class BrainTranslator(nn.Module):
         
         # encoded_embedding = self.additional_encoder(input_embeddings_batch) 
         encoded_embedding = F.relu(self.fc1(encoded_embedding))
-        out = self.pretrained_BART(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = target_ids_batch_converted)                    
+        out = self.pretrained(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = target_ids_batch_converted)                    
         
+        return out
+
+class BrainTranslatorNaive(nn.Module):
+    def __init__(self, pretrained_layers, in_feature = 840, decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048):
+        super(BrainTranslatorNaive, self).__init__()
+        '''no additional transformer encoder version'''
+        self.pretrained = pretrained_layers
+        self.fc1 = nn.Linear(in_feature, decoder_embedding_size)
+
+    def forward(self, input_embeddings_batch, input_masks_batch, input_masks_invert, target_ids_batch_converted):
+        """input_embeddings_batch: batch_size*Seq_len*840"""
+        """input_mask: 1 is not masked, 0 is masked"""
+        """input_masks_invert: 1 is masked, 0 is not masked"""
+        encoded_embedding = F.relu(self.fc1(input_embeddings_batch))
+        out = self.pretrained(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = target_ids_batch_converted)                    
         return out
 
 class BrainTranslatorBert(nn.Module):

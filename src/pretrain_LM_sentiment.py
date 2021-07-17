@@ -78,15 +78,10 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
-                if isinstance(model, BertForSequenceClassification):
-                    output = model(input_ids = target_ids, attention_mask = target_mask, return_dict = True, labels = sentiment_labels)
-                    logits = output.logits
-                    loss = output.loss
-                elif isinstance(model, RobertaForSequenceClassification):
-                    output = model(input_ids = target_ids, attention_mask = target_mask, return_dict = True, labels = sentiment_labels)
-                    logits = output.logits
-                    loss = output.loss
-
+                # forward
+                output = model(input_ids = target_ids, attention_mask = target_mask, return_dict = True, labels = sentiment_labels)
+                logits = output.logits
+                loss = output.loss
 
                 # backward + optimize only if in training phase
                 if phase == 'train':
@@ -145,8 +140,8 @@ if __name__ == '__main__':
     ''' config param'''
     num_epochs_step1 = 20
     num_epochs_step2 = 10
-    step1_lr = 1e-3
-    step2_lr = 1e-5
+    step1_lr = 1e-4
+    # step2_lr = 1e-5
 
     dataset_setting = 'unique_sent'
     # dataset_setting = 'unique_subj'
@@ -160,11 +155,15 @@ if __name__ == '__main__':
     print(f'[INFO]using bands {bands_choice}')
 
     batch_size = 32
+    
     # model_name = 'pretrain_Bert'
-    model_name = 'pretrain_RoBerta'
+    # model_name = 'pretrain_RoBerta'
+    model_name = 'pretrain_Bart'
+    print(f'[INFO]model name: {model_name}')
+
     # print('![Debug] using train batch size 1')
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained' 
-    save_name = f'Sentitment_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{step1_lr}_{dataset_setting}_{eeg_type_choice}_7-8'
+    save_name = f'Sentitment_{model_name}_b{batch_size}_{num_epochs_step1}_{step1_lr}_{dataset_setting}_{eeg_type_choice}_7-8'
     output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
     output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
     output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/pretrain/{save_name}.txt'
@@ -180,7 +179,7 @@ if __name__ == '__main__':
     ''' set up device '''
     # use cuda
     if torch.cuda.is_available():  
-        dev = "cuda:3" 
+        dev = "cuda:2" 
     else:  
         dev = "cpu"
     # CUDA_VISIBLE_DEVICES=0,1,2,3  
@@ -201,6 +200,9 @@ if __name__ == '__main__':
     elif model_name == 'pretrain_RoBerta':
         print('[INFO]pretrained checkpoint: roberta-base')
         tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
+    elif model_name == 'pretrain_Bart':
+        print('[INFO]pretrained checkpoint: bart-large')
+        tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
 
     ''' set up dataloader '''
     # train dataset
@@ -226,6 +228,8 @@ if __name__ == '__main__':
         model = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
     elif model_name == 'pretrain_RoBerta':
         model = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
+    elif model_name == 'pretrain_Bart':
+        model = BartForSequenceClassification.from_pretrained('facebook/bart-large', num_labels = 3)
     
     model.to(device)
     

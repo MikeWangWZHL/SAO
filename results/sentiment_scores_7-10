@@ -1,0 +1,166 @@
+# unique_sent setting #
+
+## test set scores using EEG features ##
+
+### BaselineMLP (using sentence level mean EEG) ###
+    sklearn macro: precision, recall, F1:
+    (0.3202582784549997, 0.3291376379611674, 0.29646950092984875, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.3181818181818182, 0.3181818181818182, 0.3181818181818182, None)
+
+    sklearn accuracy:
+    0.3181818181818182
+
+### BaselineLSTM (num_layer = 4) ### -> tend to always pred 1
+    sklearn macro: precision, recall, F1:
+    (0.3397212543554007, 0.34137159137159134, 0.17592253456643162, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.31100478468899523, 0.31100478468899523, 0.31100478468899523, None)
+
+    sklearn accuracy:
+    0.31100478468899523
+
+
+### Bert TwoStep from scratch ###
+    sklearn macro: precision, recall, F1:
+    (0.32407993605115903, 0.32015070985659216, 0.26906252772452577, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.3373205741626794, 0.3373205741626794, 0.3373205741626794, None)
+
+    sklearn accuracy:
+    0.3373205741626794
+
+### FineTune PretrainedBert TwoStep ###
+    sklearn macro: precision, recall, F1:
+    (0.22502457606291473, 0.33414733414733416, 0.2575878372114582, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.35645933014354064, 0.35645933014354064, 0.3564593301435406, None)
+
+    sklearn accuracy:
+    0.35645933014354064
+
+
+### Pipeline: (generator trained on task 1 data) first [generation using Bart] and then [classification on generated text using Bert] ###
+    sklearn macro: precision, recall, F1:
+    (0.620694259012016, 0.4492147286264933, 0.4130628940706596, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.42822966507177035, 0.42822966507177035, 0.42822966507177035, None)
+
+    sklearn accuracy:
+    0.42822966507177035
+
+### Pipeline: (generator trained on task 1 data) first [generation using Bart] and then [classification on generated text using Bart] ###
+    sklearn macro: precision, recall, F1:
+    (0.5286160156946674, 0.37362338097632214, 0.2979969930177399, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.35406698564593303, 0.35406698564593303, 0.35406698564593303, None)
+
+    sklearn accuracy:
+    0.35406698564593303
+
+### Pipeline: (generator trained on task 1 data) first [generation using Bart] and then [classification on generated text using RoBerta] ###
+    ###
+    sklearn macro: precision, recall, F1:
+    (0.5020317847165962, 0.4252076899135722, 0.40371934375471613, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.42105263157894735, 0.42105263157894735, 0.42105263157894735, None)
+
+    sklearn accuracy:
+    0.42105263157894735
+
+
+### Pipeline: one step training (generator trained on task 1 data) first [generation using Bart] and then [classification on generated text using Bert] ###
+    ### 
+    sklearn macro: precision, recall, F1:
+    (0.651403785512387, 0.4932874859345447, 0.46156938293787464, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.47129186602870815, 0.47129186602870815, 0.47129186602870815, None)
+
+    sklearn accuracy:
+    0.47129186602870815
+
+
+### Pipeline: (generator trained on task 1 data) first [generation using Naive Bart] and then [classification on generated text using Bart] ###
+    #### replace the additional transformer layers with one fc layer
+    sklearn macro: precision, recall, F1:
+    (0.18640012115704982, 0.24358974358974358, 0.1520747403100344, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.22488038277511962, 0.22488038277511962, 0.22488038277511962, None)
+
+    sklearn accuracy:
+    0.22488038277511962
+
+### Pipeline: (generator trained on task1 and task2 data) first [generation using Bart] and then [classification on generated text using Bert] ###
+    sklearn macro: precision, recall, F1:
+    (0.44879035692989183, 0.3402433623021859, 0.32278516891313563, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.3277511961722488, 0.3277511961722488, 0.3277511961722488, None)
+
+    sklearn accuracy:
+    0.3277511961722488
+
+### Pipeline: (generator trained on task1, task2, and task3 data) first [generation using Bart] and then [classification on generated text using Bert] ###
+    sklearn macro: precision, recall, F1:
+    (0.5173822301729278, 0.3963046757164404, 0.3764434971004582, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.3803827751196172, 0.3803827751196172, 0.38038277511961727, None)
+
+    sklearn accuracy:
+    0.3803827751196172
+
+### Pipeline: (generator trained on task1, task2, and task2NR data) first [generation using Bart] and then [classification on generated text using Bert] ###
+    sklearn macro: precision, recall, F1:
+    (0.5852097935598942, 0.41810971555497095, 0.37951465878295143, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.3991228070175439, 0.3991228070175439, 0.3991228070175439, None)
+
+    sklearn accuracy:
+    0.3991228070175439
+
+
+
+
+
+## test set score using text ##
+
+### FinetunedBertOnText ###
+    sklearn macro: precision, recall, F1:
+    (0.7599121918270854, 0.7452297158179512, 0.7405233490642743, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.7535885167464115, 0.7535885167464115, 0.7535885167464116, None)
+
+    sklearn accuracy:
+    0.7535885167464115
+
+### FinetunedRoBertaOnText ###
+    sklearn macro: precision, recall, F1:
+    (0.7251612696318288, 0.7134956546721253, 0.7062722261045112, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.7272727272727273, 0.7272727272727273, 0.7272727272727273, None)
+
+    sklearn accuracy:
+    0.7272727272727273
+
+### FinetunedBartOnText ###
+    sklearn macro: precision, recall, F1:
+    (0.7934619152731827, 0.7826737532619886, 0.7742628716312927, None)
+
+    sklearn micro: precision, recall, F1:
+    (0.7966507177033493, 0.7966507177033493, 0.7966507177033493, None)
+
+    sklearn accuracy:
+    0.7966507177033493

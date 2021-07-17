@@ -16,7 +16,7 @@ from tqdm import tqdm
 
 from transformers import BertTokenizer, BertLMHeadModel, BertConfig
 from data import ZuCo_dataset
-from model_sentiment import BaselineMLPSentence, BaselineLSTM, NaiveFineTunePretrainedBert
+from model_sentiment import BaselineMLPSentence, BaselineLSTM, NaiveFineTunePretrainedBert, ZeroShotSentimentDiscovery
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
@@ -150,8 +150,8 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
 if __name__ == '__main__':
     
     ''' config param'''
-    num_epochs = 30
-    step_lr = 1e-3
+    num_epochs = 50
+    step_lr = 1e-5
 
     '''dataset division'''
     # dataset_setting = 'unique_subj'
@@ -169,13 +169,20 @@ if __name__ == '__main__':
     print(f'[INFO]using bands {bands_choice}')
     
     '''model name'''
-    # model_name = 'Baseline_MLP'
-    # model_name = 'Baseline_LSTM_h256'
-    # model_name = 'NaiveFineTuneBert'
+    # model_name = 'BaselineMLP'
+    # model_name = 'BaselineLSTM'
+    model_name = 'NaiveFinetuneBert'
 
     batch_size = 32
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment' 
-    save_name = f'{model_name}_{step_lr}_b{batch_size}_{dataset_setting}_{eeg_type_choice}_7-6'
+    save_name = f'{model_name}_{step_lr}_b{batch_size}_{dataset_setting}_{eeg_type_choice}_7-8'
+    
+    if_load_pretrained_sentiment_checkpoint_from_text = True
+
+    if model_name == 'BaselineLSTM':
+        num_layers = 4
+        save_name = f'{model_name}_numLayers-{num_layers}_{step_lr}_b{batch_size}_{dataset_setting}_{eeg_type_choice}_7-8'
+
     output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
     output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
     output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/sentiment/{save_name}.txt'
@@ -230,22 +237,28 @@ if __name__ == '__main__':
     dataloaders = {'train':train_dataloader, 'dev':val_dataloader}
 
     ''' set up model '''
+    if model_name == 'BaselineMLP':
+        print('[INFO]Model: BaselineMLP')
+        model = BaselineMLPSentence(input_dim = 840, hidden_dim = 128, output_dim = 3)
+    elif model_name == 'BaselineLSTM':
+        print('[INFO]Model: BaselineLSTM')
+        # model = BaselineLSTM(input_dim = 840, hidden_dim = 256, output_dim = 3, num_layers = 1) #
+        model = BaselineLSTM(input_dim = 840, hidden_dim = 256, output_dim = 3, num_layers = num_layers)
+    elif model_name == 'NaiveFinetuneBert':
+        print('[INFO]Model: NaiveFinetuneBert')
+        if if_load_pretrained_sentiment_checkpoint_from_text:
+            print('[INFO]use pretrained checkpoint from text')
+            model = NaiveFineTunePretrainedBert(input_dim = 840, hidden_dim = 768, output_dim = 3, pretrained_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bert_b32_20_0.001_unique_sent_GD_7-8.pt')
+        else:
+            model = NaiveFineTunePretrainedBert(input_dim = 840, hidden_dim = 768, output_dim = 3)
     
-    # print('[INFO]Model: BaselineMLP')
-    # model = BaselineMLPSentence(input_dim = 840, hidden_dim = 128, output_dim = 3)
-
-    # print('[INFO]Model: BaselineLSTM')
-    # model = BaselineLSTM(input_dim = 840, hidden_dim = 256, output_dim = 3)
-    
-    print('[INFO]Model: NaiveFineTuneBert')
-    model = NaiveFineTunePretrainedBert(input_dim = 840, hidden_dim = 768, output_dim = 3)
     model.to(device)
     
     ''' training loop '''
 
     ''' set up optimizer and scheduler'''
     optimizer_step1 = optim.SGD(model.parameters(), lr=step_lr, momentum=0.9)
-    exp_lr_scheduler_step1 = lr_scheduler.StepLR(optimizer_step1, step_size=10, gamma=0.5)
+    exp_lr_scheduler_step1 = lr_scheduler.StepLR(optimizer_step1, step_size=20, gamma=0.5)
 
     ''' set up loss function '''
     criterion = nn.CrossEntropyLoss()

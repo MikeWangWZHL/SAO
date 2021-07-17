@@ -15,7 +15,7 @@ from tqdm import tqdm
 
 from transformers import BertTokenizer, BertLMHeadModel, BertConfig
 from data import ZuCo_dataset
-from model import BrainTranslatorBert
+from model_generation import BrainTranslatorBert
 
 #TODO: not working, cannot treat the word level EEG data as a kind of word embedding?
 

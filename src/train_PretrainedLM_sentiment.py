@@ -13,10 +13,9 @@ import time
 import copy
 from tqdm import tqdm
 
-from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig, BartForSequenceClassification, BertTokenizer, BertConfig, BertForSequenceClassification, RobertaTokenizer, RobertaForSequenceClassification
+from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig, BartForSequenceClassification, BertTokenizer, BertConfig, BertForSequenceClassification, RobertaTokenizer, RobertaForSequenceClassification, RobertaConfig
 from data import ZuCo_dataset
-from model_sentiment import FineTunePretrainedTwoStep
-
+from model_sentiment import FineTunePretrainedTwoStep, JointBrainTranslatorSentimentClassifier
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
     # preds: numpy array: N * 3 
@@ -69,6 +68,7 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
                 input_masks = input_masks.to(device)
                 input_mask_invert = input_mask_invert.to(device)
                 sentiment_labels = sentiment_labels.to(device)
+                target_ids = target_ids.to(device)
 
                 # zero the parameter gradients
                 optimizer.zero_grad()
@@ -77,6 +77,18 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
                     output = model(input_word_eeg_features, input_masks, input_mask_invert, sentiment_labels)
                     logits = output.logits
                     loss = output.loss
+                
+                elif isinstance(model, JointBrainTranslatorSentimentClassifier):
+                    """replace padding ids in target_ids with -100"""
+                    target_ids[target_ids == tokenizer.pad_token_id] = -100 
+
+                    LM_output, classification_output = model(input_word_eeg_features, input_masks, input_mask_invert, target_ids, sentiment_labels)
+                    generation_loss = LM_output.loss
+                    classification_loss = classification_output['loss']
+                    logits = classification_output['logits']
+                    
+                    alpha = 0.1
+                    loss = (1-alpha) * generation_loss + alpha * classification_loss 
 
 
                 # backward + optimize only if in training phase
@@ -134,11 +146,17 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
 if __name__ == '__main__':
     
     ''' config param'''
+    # num_epochs_step1 = 1
+    # num_epochs_step2 = 10
+    # step1_lr = 5*1e-5
+    # step2_lr = 5*1e-7
     num_epochs_step1 = 20
     num_epochs_step2 = 15
-    step1_lr = 1e-3
-    step2_lr = 1e-3
+    step1_lr = 5*1e-5
+    step2_lr = 5*1e-7
 
+
+    date = '7-9'
     # dataset_setting = 'unique_subj'
     dataset_setting = 'unique_sent'
     subject_choice = 'ALL'
@@ -153,10 +171,22 @@ if __name__ == '__main__':
     batch_size = 32
 
     # model_name = 'finetune_Bert'
-    model_name = 'finetune_RoBerta'
+    # model_name = 'finetune_RoBerta'
+    model_name = 'JointBrainTranslatorSentimentClassifier'
+
+    ''' checkpoint setting '''
+    if_load_pretrained_sentiment_checkpoint_from_text = False
+    if_using_randomly_initialize_model = False
     
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_sentiment' 
-    save_name = f'Sentitment_{model_name}_subj-{subject_choice}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_{eeg_type_choice}_7-8_no_PE_add_srcmask'
+    
+    if if_load_pretrained_sentiment_checkpoint_from_text and (not if_using_randomly_initialize_model):
+        save_name = f'UsePretrainedTextCheckpoint_Sentitment_{model_name}_subj-{subject_choice}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_{eeg_type_choice}_{date}_no_PE_add_srcmask'
+    elif if_using_randomly_initialize_model:
+        save_name = f'RandomInit_Sentitment_{model_name}_subj-{subject_choice}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_{eeg_type_choice}_{date}_no_PE_add_srcmask'
+    else:
+        save_name = f'Sentitment_{model_name}_subj-{subject_choice}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_{eeg_type_choice}_{date}_no_PE_add_srcmask'
+    
     output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
     output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
     output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/sentiment/{save_name}.txt'
@@ -194,7 +224,9 @@ if __name__ == '__main__':
     elif model_name == 'finetune_RoBerta':
         print('[INFO]pretrained checkpoint: roberta-base')
         tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
-
+    
+    elif model_name == 'JointBrainTranslatorSentimentClassifier':
+        tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
 
     ''' set up dataloader '''
     # train dataset
@@ -218,11 +250,34 @@ if __name__ == '__main__':
     ''' set up model '''
     # pretrained_bart = BartForSequenceClassification.from_pretrained('facebook/bart-base', num_labels = 3)
     if model_name == 'finetune_Bert':
-        pretrained = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
+        if if_using_randomly_initialize_model:
+            print('[INFO]using random init')
+            config = BertConfig.from_pretrained('bert-base-cased',num_labels=3)
+            pretrained = BertForSequenceClassification(config)
+        else:
+            pretrained = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
     elif model_name == 'finetune_RoBerta':
-        pretrained = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
+        if if_using_randomly_initialize_model:
+            print('[INFO]using random init')
+            config = RobertaConfig.from_pretrained('roberta-base',num_labels=3)
+            pretrained = RobertaForSequenceClassification(config)
+        else:
+            pretrained = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
+    elif model_name == 'JointBrainTranslatorSentimentClassifier':
+        pretrained = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
 
-    model = FineTunePretrainedTwoStep(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 768, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+    if if_load_pretrained_sentiment_checkpoint_from_text and (not if_using_randomly_initialize_model):
+        print('[INFO] load pretrained sentiment checkpoint from text!')
+        if model_name == 'finetune_Bert':
+            pretrained.load_state_dict(torch.load('/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bert_b32_20_0.001_unique_sent_GD_7-8.pt'))
+        elif model_name == 'finetune_RoBerta':
+            pretrained.load_state_dict(torch.load('/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_RoBerta_b32_20_0.001_unique_sent_GD_7-8.pt'))
+
+    if model_name == 'JointBrainTranslatorSentimentClassifier':
+        model = JointBrainTranslatorSentimentClassifier(pretrained, in_feature = 105*len(bands_choice), d_model = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048, num_labels = 3)
+    else:
+        model = FineTunePretrainedTwoStep(pretrained, in_feature = 105*len(bands_choice), d_model = 768, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+
     model.to(device)
     
     ''' training loop '''
@@ -231,12 +286,26 @@ if __name__ == '__main__':
     '''step one trainig: freeze most of BART params'''
     ######################################################
     # closely follow BART paper
-    for name, param in model.named_parameters():
-        if param.requires_grad and 'pretrained_BART' in name:
-            if ('shared' in name) or ('embed_positions' in name) or ('encoder.layers.0' in name) or ('classification_head' in name):
-                continue
-            else:
-                param.requires_grad = False
+    if model_name == 'finetune_Bert':
+        for name, param in model.named_parameters():
+            print(name)
+            if param.requires_grad and 'pretrained_layers' in name:
+                if ('embeddings' in name) or ('encoder.layer.0' in name):
+                    continue
+                else:
+                    param.requires_grad = False
+
+    elif model_name == 'finetune_RoBerta':
+        print('[ERROR] not implemented parameter freeze mask for step one')
+        quit()
+    elif model_name == 'JointBrainTranslatorSentimentClassifier':
+        for name, param in model.named_parameters():
+            if param.requires_grad and 'pretrained_generator' in name:
+                if ('shared' in name) or ('embed_positions' in name) or ('encoder.layers.0' in name):
+                    continue
+                else:
+                    param.requires_grad = False
+
 
 
     ''' set up optimizer and scheduler'''
@@ -249,6 +318,11 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
 
     print('=== start Step1 training ... ===')
+    
+    print('## required params: ##')
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            print(name)
     # return best loss model from step1 training
     model, best_acc_step1, best_loss_step1 = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs_step1, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
     
@@ -258,9 +332,6 @@ if __name__ == '__main__':
     for name, param in model.named_parameters():
         param.requires_grad = True
 
-    for name, param in model.named_parameters():
-        if param.requires_grad:
-            print(name)
 
     ''' set up optimizer and scheduler'''
     optimizer_step2 = optim.SGD(model.parameters(), lr=step2_lr, momentum=0.9)
@@ -272,7 +343,14 @@ if __name__ == '__main__':
     
     print()
     print('=== start Step2 training ... ===')
+    print('## required params: ##')
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            print(name)
+
     trained_model = train_model(dataloaders, device, model, criterion, optimizer_step2, exp_lr_scheduler_step2, num_epochs=num_epochs_step2, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last, best_acc = best_acc_step1, best_loss = best_loss_step1)
 
     # '''save checkpoint'''
     # torch.save(trained_model.state_dict(), os.path.join(save_path,output_checkpoint_name))
+
+    #TODO: run the model

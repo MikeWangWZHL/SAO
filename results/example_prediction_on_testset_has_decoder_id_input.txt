@@ -1,0 +1,265 @@
+# with decoder_input_id = target_ids
+"""example output on all subjects in test set"""
+# loss (on whole testset) = 0.385026
+
+################################################
+target tokens: <s>Everything its title implies, a standard-issue crime drama spat out from the Tinseltown assembly line.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Well itsTitle implies, a standard- issue crime drama spat out from from Tinseltown assembly line.</s>anssonanssonansson##########################################437############CG######
+################################################
+
+target tokens: <s>It isn't that Stealing Harvard is a horrible movie -- if only it were that grand a failure!</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It isn't that St stealing Harvard is a horrible movie -- if for it were that grand a failure!</s>anssonansson</s></s></s></s></s></s></s></s></s></s></s></s></s>\/\/\/\/</s>\/\/\/\/</s>
+################################################
+
+target tokens: <s>A richly imagined and admirably mature work from a gifted director who definitely has something on his mind.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A richly imagined and admirablyably work from a gifted director who definitely has something her his mind.</s>flixvilleundovillevillevillevillevillevillevillevillevillevillevilleliclicliclicliclicliclicliclic
+################################################
+
+target tokens: <s>A classy item by a legend who may have nothing left to prove but still has the chops and drive to show how its done.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A classy item by a legend who may may nothing left to prove but still has the chops chops drive to show how's done.</s>flixflixflixflixflixflixrilylicrilyrilyrilyrilyliclicrilyrilylicmericmericmeric
+################################################
+
+target tokens: <s>Everything its title implies, a standard-issue crime drama spat out from the Tinseltown assembly line.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Well itsTitle implies, a standard- issue crime drama spat out from from Tinseltown assembly line.</s>anssonanssonansson##########################################437############CG######
+################################################
+
+target tokens: <s>It isn't that Stealing Harvard is a horrible movie -- if only it were that grand a failure!</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It isn't that St stealing Harvard is a horrible movie -- if for it were that grand a failure!</s>anssonansson</s></s></s></s></s></s></s></s></s></s></s></s></s>\/\/\/\/</s>\/\/\/\/</s>
+################################################
+
+target tokens: <s>A richly imagined and admirably mature work from a gifted director who definitely has something on his mind.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A richly imagined and admirablyably work from a gifted director who definitely has something her his mind.</s>flixvilleundovillevillevillevillevillevillevillevillevillevillevilleliclicliclicliclicliclicliclic
+################################################
+
+target tokens: <s>A classy item by a legend who may have nothing left to prove but still has the chops and drive to show how its done.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A classy item by a legend who may may nothing left to prove but still has the chops chops drive to show how's done.</s>flixflixflixflixflixflixrilylicrilyrilyrilyrilyliclicrilyrilylicmericmericmeric
+################################################
+
+target tokens: <s>Everything its title implies, a standard-issue crime drama spat out from the Tinseltown assembly line.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Well itsTitle implies, a standard- issue crime drama spat out from from Tinseltown assembly line.</s>anssonanssonansson##########################################437############CG######
+################################################
+
+target tokens: <s>It just doesn't have much else... especially in a moral sense.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It just doesn't have much else... an in a moral sense.</s></s></s></s></s>696yrim====474474474474474474474474474474,474474474474irsirsirs</s></s></s>angangangang
+################################################
+
+target tokens: <s>The art direction is often exquisite, and the anthropomorphic animal characters are beautifully realized through clever makeup design, leaving one to hope that the eventual DVD release will offer subtitles and the original Italian-language soundtrack.</s><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>The art direction is often exquisite, and the anthropomorphic animal characters are beautifully realized through clever makeup design, leaving leaving to hope that the eventual DVD release will offer subtitles subtitles the original ItalianItalianlanguage soundtrack.</s></s></s></s>######
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Everything its title implies, a standard-issue crime drama spat out from the Tinseltown assembly line.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Well itsTitle implies, a standard- issue crime drama spat out from from Tinseltown assembly line.</s>anssonanssonansson##########################################437############CG######
+################################################
+
+target tokens: <s>Those unfamiliar with Mormon traditions may find The Singles Ward occasionally bewildering.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>The unfamiliar with Mormon traditions may find The Singles Ward occasionally bewild bewild.</s>46imiGIundoundoimiimiimiimioriorioriimiimiimiimiimiimiimiimiimiimiimiimimericmericmericmericmeric</s></s>
+################################################
+
+target tokens: <s>But what's nice is that there's a casual intelligence that permeates the script.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A what's nice is that there's a casual intelligence – perme perme the script.</s></s></s></s>RR696696</s>riorioriorio</s>474illi</s>illi</s></s></s></s>liclic474</s>anssonanssonanssonansson
+################################################
+
+target tokens: <s>Its engaging simplicity is driven by appealing leads.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It engaging simplicity is driven by appealing leads lead</s> Forward=-=-=-=-=-=-=-=-VID===26undoniWithNoilli26undoulz696696262626262626474474474474474474474474474474474���437437�
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>\TheKid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s>ansson</s>ociousgenicgenic437437genicgenicgenicgenic437437437
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A the talented cast alone will keep you you, as will the fight scenes.</s>ansson</s></s></s>686686ugu</s></s></s></s>folk</s>folk</s></s>folkanssonanssonanssonanssonanssonanssonanssonanssonanssonanssonansson437437
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Wedding feels a bit anachronistic.</s>JV=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-JPJVilliJPJPudoJPJPJPの�の�の�の�の�の�の�の�の�##############################</s>474474
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Fans of theTV series will be disappointed disappointedproduced everyone else will be slightly bored.</s>illiudoudoudo437inousinousinousinousinous</s>inous</s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s></s>
+################################################
+
+
+
+"""example output on subject ZAB in test set"""
+# loss on subject ZAB = 0.384805
+
+################################################
+target tokens: <s>Everything its title implies, a standard-issue crime drama spat out from the Tinseltown assembly line.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>Well itsTitle implies, a standard- issue crime drama spat out from from Tinseltown assembly line.</s>anssonanssonansson##########################################437############CG######
+################################################
+
+target tokens: <s>A gratingly unfunny groaner littered with zero-dimensional, unlikable characters and hackneyed, threadbare comic setups.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A gratingly unfunny groaner littered with zero-dimensional, unlikable characters and hackneyed, threadbare comic setups.</s>ansson</s>\/genicgenicgenicgenicgenic437437genicgenic\/\/\/\/\/
+################################################
+
+target tokens: <s>It isn't that Stealing Harvard is a horrible movie -- if only it were that grand a failure!</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It isn't that St stealing Harvard is a horrible movie -- if for it were that grand a failure!</s>anssonansson</s></s></s></s></s></s></s></s></s></s></s></s></s>\/\/\/\/</s>\/\/\/\/</s>
+################################################
+
+target tokens: <s>It's solid and affecting and exactly as thought-provoking as it should be.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It's solid and affecting and exactly as thought-provoking as as should be.</s></s>hosthostohaUGCUGCUGCWithNoWithNoWithNoWithNoWithNoWithNoWithNoimiimiimiirsirsirsirsirsirsirsirsirsirsirsirs
+################################################
+
+target tokens: <s>A richly imagined and admirably mature work from a gifted director who definitely has something on his mind.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A richly imagined and admirablyably work from a gifted director who definitely has something her his mind.</s>flixvilleundovillevillevillevillevillevillevillevillevillevillevilleliclicliclicliclicliclicliclic
+################################################
+
+target tokens: <s>An action/thriller of the finest kind, evoking memories of Day of the Jackal, The French Connection, and Heat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>An action/thriller of the finest of, ev inspiring memories of Day of of Jackal, The French Connection, and Heat.</s></s>ansson\/genicgenicgenicgenicgenicgenicgenic\/</s></s></s></s></s></s></s>
+################################################
+
+target tokens: <s>A classy item by a legend who may have nothing left to prove but still has the chops and drive to show how its done.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>A classy item by a legend who may may nothing left to prove but still has the chops chops drive to show how's done.</s>flixflixflixflixflixflixrilylicrilyrilyrilyrilyliclicrilyrilylicmericmericmeric
+################################################
+
+target tokens: <s>It's a head-turner -- thoughtfully written, beautifully read and, finally, deeply humanizing.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+
+predicted tokens: <s>It's a head-turner -- thoughtfully written, beautifully read read, finally finally deeply humanizing.</s></s>villeundoundoundoundoundovilleundoundoliclicliclicliclicliclicliclicliclicliclic
+################################################

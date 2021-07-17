@@ -13,12 +13,11 @@ import time
 import copy
 from tqdm import tqdm
 
-from transformers import BartTokenizer, BartForConditionalGeneration, BartConfig
+from transformers import BertLMHeadModel, BartTokenizer, BartForConditionalGeneration, BartConfig, BartForSequenceClassification, BertTokenizer, BertConfig, BertForSequenceClassification, RobertaTokenizer, RobertaForSequenceClassification
+
 from data import ZuCo_dataset
-from model import BrainTranslator
-
-#TODO: not working, cannot treat the word level EEG data as a kind of word embedding?
-
+from model_generation import BrainTranslator, BrainTranslatorNaive
+ 
 
 def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num_epochs=25, checkpoint_path_best = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/best/test.pt', checkpoint_path_last = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints/last/test.pt'):
     # modified from: https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
@@ -51,10 +50,7 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
                 target_ids_batch = target_ids.to(device)
                 """replace padding ids in target_ids with -100"""
                 target_ids_batch[target_ids_batch == tokenizer.pad_token_id] = -100 
-
-                # target_ids_batch_label = target_ids_batch.clone().detach()
-                # target_ids_batch_label[target_ids_batch_label == tokenizer.pad_token_id] = -100
-                
+              
                 # zero the parameter gradients
                 optimizer.zero_grad()
 
@@ -127,28 +123,55 @@ def train_model(dataloaders, device, model, criterion, optimizer, scheduler, num
     model.load_state_dict(best_model_wts)
     return model
 
+def show_require_grad_layers(model):
+    print()
+    print(' require_grad layers:')
+    # sanity check
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            print(' ', name)
 
 if __name__ == '__main__':
     
     ''' config param'''
     num_epochs_step1 = 20
-    num_epochs_step2 = 20
+    num_epochs_step2 = 30
     step1_lr = 5*1e-5
     step2_lr = 5*1e-7
-    dataset_setting = 'unique_subj'
+    dataset_setting = 'unique_sent'
 
     batch_size = 32
     # print('![Debug] using train batch size 1')
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation' 
-    model_name = f'finetune_BART_EEG_feature_2steptraining_b32_20_15_51e-5_51e-7_use_label_{dataset_setting}_setting_7-1_no_PE_add_srcmask'
-    output_checkpoint_name_best = save_path + f'/best/{model_name}.pt' 
-    output_checkpoint_name_last = save_path + f'/last/{model_name}.pt' 
-    output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/{model_name}.txt'
+    
+    # model_name = 'NaiveBartGeneration' # with no additional transformers
+    model_name = 'BartGeneration' 
+    # model_name = 'BertGeneration'
+    
+    # task_name = 'task1'
+    # task_name = 'task1_task2'
+    # task_name = 'task1_task2_task3'
+    task_name = 'task1_task2_taskNRv2'
+
+
+    # skip_step_one = False
+    skip_step_one = True
+    
+    load_step1_checkpoint = True
+
+    print(f'[INFO]using pretrained {model_name}')
+    
+    if skip_step_one:
+        save_name = f'{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-13_no_PE_add_srcmask'
+    else:
+        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-13_no_PE_add_srcmask'
+    output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
+    output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
+    output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/generation/{save_name}.txt'
 
     subject_choice = 'ALL'
-    # subject_choice = 'ZAB'
     print(f'![Debug]using {subject_choice}')
-    eeg_type_choice = 'TRT'
+    eeg_type_choice = 'GD'
     print(f'[INFO]eeg type {eeg_type_choice}')
     # bands_choice = ['_t1'] 
     bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
@@ -166,26 +189,47 @@ if __name__ == '__main__':
     ''' set up device '''
     # use cuda
     if torch.cuda.is_available():  
-        dev = "cuda:3" 
+        dev = "cuda:2" 
     else:  
         dev = "cpu"
     # CUDA_VISIBLE_DEVICES=0,1,2,3  
     device = torch.device(dev)
     print(f'[INFO]using device {dev}')
+    print()
 
 
     ''' set up dataloader '''
-    # dataset_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset_skip_zerofixation.pickle' 
-    dataset_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset-with-tokens_6-25.pickle' 
-    with open(dataset_path, 'rb') as handle:
-        whole_dataset_dict = pickle.load(handle)
+    whole_dataset_dicts = []
+    if 'task1' in task_name:
+        dataset_path_task1 = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle/task1-SR-dataset-with-tokens_6-25.pickle' 
+        with open(dataset_path_task1, 'rb') as handle:
+            whole_dataset_dicts.append(pickle.load(handle))
+    if 'task2' in task_name:
+        dataset_path_task2 = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task2-NR/pickle/task2-NR-dataset-with-tokens_7-10.pickle' 
+        with open(dataset_path_task2, 'rb') as handle:
+            whole_dataset_dicts.append(pickle.load(handle))
+    if 'task3' in task_name:
+        dataset_path_task3 = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task3-TSR/pickle/task3-TSR-dataset-with-tokens_7-10.pickle' 
+        with open(dataset_path_task3, 'rb') as handle:
+            whole_dataset_dicts.append(pickle.load(handle))
+    if 'taskNRv2' in task_name:
+        dataset_path_taskNRv2 = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task2-NR-2.0/pickle/task2-NR-2.0-dataset-with-tokens_7-15.pickle' 
+        with open(dataset_path_taskNRv2, 'rb') as handle:
+            whole_dataset_dicts.append(pickle.load(handle))
+
+    print()
     
-    tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
+    if model_name in ['BartGeneration','NaiveBartGeneration']:
+        tokenizer = BartTokenizer.from_pretrained('facebook/bart-large')
+    elif model_name == 'BertGeneration':
+        tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+        config = BertConfig.from_pretrained("bert-base-cased")
+        config.is_decoder = True
 
     # train dataset
-    train_set = ZuCo_dataset(whole_dataset_dict, 'train', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
+    train_set = ZuCo_dataset(whole_dataset_dicts, 'train', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
     # dev dataset
-    dev_set = ZuCo_dataset(whole_dataset_dict, 'dev', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
+    dev_set = ZuCo_dataset(whole_dataset_dicts, 'dev', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice, setting = dataset_setting)
     # test dataset
     # test_set = ZuCo_dataset(whole_dataset_dict, 'test', tokenizer, subject = subject_choice, eeg_type = eeg_type_choice, bands = bands_choice)
 
@@ -201,10 +245,16 @@ if __name__ == '__main__':
     dataloaders = {'train':train_dataloader, 'dev':val_dataloader}
 
     ''' set up model '''
-    pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
-    # pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-base')
-    model = BrainTranslator(pretrained_bart, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
-    # model = BrainTranslator(pretrained_bart, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=5, additional_encoder_dim_feedforward = 1024)
+    if model_name == 'BartGeneration':
+        pretrained = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
+        model = BrainTranslator(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+    elif model_name == 'BertGeneration':
+        pretrained = BertLMHeadModel.from_pretrained('bert-base-cased', config=config)
+        model = BrainTranslator(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 768, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+    elif model_name == 'NaiveBartGeneration':
+        pretrained = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
+        model = BrainTranslatorNaive(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+
     model.to(device)
     
     ''' training loop '''
@@ -212,30 +262,51 @@ if __name__ == '__main__':
     ######################################################
     '''step one trainig: freeze most of BART params'''
     ######################################################
+
     # closely follow BART paper
-    for name, param in model.named_parameters():
-        if param.requires_grad and 'pretrained_BART' in name:
-            if ('embed_positions' in name) or ('encoder.layers.0' in name):
-                continue
-            else:
-                param.requires_grad = False
-    # sanity check
-    # for name, param in model.named_parameters():
-    #     if param.requires_grad:
-    #         print(name)
-    ''' set up optimizer and scheduler'''
-    optimizer_step1 = optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=step1_lr, momentum=0.9)
+    if model_name in ['BartGeneration','NaiveBartGeneration']:
+        for name, param in model.named_parameters():
+            if param.requires_grad and 'pretrained' in name:
+                if ('shared' in name) or ('embed_positions' in name) or ('encoder.layers.0' in name):
+                    continue
+                else:
+                    param.requires_grad = False
+    elif model_name == 'BertGeneration':
+        for name, param in model.named_parameters():
+            if param.requires_grad and 'pretrained' in name:
+                if ('embeddings' in name) or ('encoder.layer.0' in name):
+                    continue
+                else:
+                    param.requires_grad = False
+ 
 
-    exp_lr_scheduler_step1 = lr_scheduler.StepLR(optimizer_step1, step_size=10, gamma=0.1)
+    if skip_step_one:
+        if load_step1_checkpoint:
+            # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_finetune_BartGeneration_2steptraining_b32_30_30_5e-05_5e-07_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
+            # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-06_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
+            # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/cutstep2_task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-06_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
+            
+            stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_2steptraining_b32_20_30_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
+            print(f'skip step one, load checkpoint: {stepone_checkpoint}')
+            model.load_state_dict(torch.load(stepone_checkpoint))
+        else:
+            print('skip step one, start from scratch at step two')
+    else:
 
-    # TODO: rethink about the loss function
-    ''' set up loss function '''
-    criterion = nn.CrossEntropyLoss()
+        ''' set up optimizer and scheduler'''
+        optimizer_step1 = optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), lr=step1_lr, momentum=0.9)
 
-    print('=== start Step1 training ... ===')
-    # return best loss model from step1 training
-    model = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs_step1, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
-    
+        exp_lr_scheduler_step1 = lr_scheduler.StepLR(optimizer_step1, step_size=20, gamma=0.1)
+
+        ''' set up loss function '''
+        criterion = nn.CrossEntropyLoss()
+
+        print('=== start Step1 training ... ===')
+        # print training layers
+        show_require_grad_layers(model)
+        # return best loss model from step1 training
+        model = train_model(dataloaders, device, model, criterion, optimizer_step1, exp_lr_scheduler_step1, num_epochs=num_epochs_step1, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
+
     ######################################################
     '''step two trainig: update whole model for a few iterations'''
     ######################################################
@@ -245,13 +316,17 @@ if __name__ == '__main__':
     ''' set up optimizer and scheduler'''
     optimizer_step2 = optim.SGD(model.parameters(), lr=step2_lr, momentum=0.9)
 
-    exp_lr_scheduler_step2 = lr_scheduler.StepLR(optimizer_step2, step_size=10, gamma=0.1)
+    exp_lr_scheduler_step2 = lr_scheduler.StepLR(optimizer_step2, step_size=30, gamma=0.1)
 
     ''' set up loss function '''
     criterion = nn.CrossEntropyLoss()
     
     print()
     print('=== start Step2 training ... ===')
+    # print training layers
+    show_require_grad_layers(model)
+    
+    '''main loop'''
     trained_model = train_model(dataloaders, device, model, criterion, optimizer_step2, exp_lr_scheduler_step2, num_epochs=num_epochs_step2, checkpoint_path_best = output_checkpoint_name_best, checkpoint_path_last = output_checkpoint_name_last)
 
     # '''save checkpoint'''

@@ -1,0 +1,801 @@
+target tokens: <s>It's the best film of the year so far, the benchmark against which all other Best Picture contenders should be measured.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a best of of the year. far. and best for which all other films Films nominees are be judged.4</s></s></s>gggggggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>This is one of the biggest disappointments of the year.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> is a of the most problemsments of my year. I</s></s></s>gggg44isirlirlirlirlirlisisisirlirlis- is is-------isblbl
+################################################
+
+target tokens: <s>It never fails to engage us.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s ends to am me. This</s></s>gggggisisisisis...................,......,
+################################################
+
+target tokens: <s>Denis forges out of the theories of class - based rage and sisterly obsession a razor-sided tuning fork that rings with cultural, sexual and social discord.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>is Lear the new of the shadows of his and and on and revengehood love. new-sharp, wheel. is like a and political and political commentary.4</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>The movie slides downhill as soon as macho action conventions assert themselves.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is are from the as theo comes begins begin themselves. It</s></s></s>gggingingblblblblirlirlisisisisisis----------blbl
+################################################
+
+target tokens: <s>More romantic, more emotional and ultimately more satisfying than the teary-eyed original.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> thanized more romantic, more more powerful. the work--eyed,. I</s></s>ggggg4blblblblblirlirlblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Like the best of Godard's movies... it is visually ravishing, penetrating, impenetrable.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> this rest of them's, work,and's a stunningishing. and and andossiblyetrable and It</s></s></s>ggggggggblblgggblblblblblblblbl
+################################################
+
+target tokens: <s>The cumulative effect of the movie is repulsive and depressing.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other effect is all two is thatulsive. it. It</s></s></s>ggggisisisisisisisisisisisis!!--!-------isisbl
+################################################
+
+target tokens: <s>Feels like nothing quite so much as a middle-aged moviemaker's attempt to surround himself with beautiful, half-naked women.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>eling like a I like good as a dream schoolaged maniemaker. dream at make himself with a women but-baked women.I</s></s></s>gggggggggggggg
+################################################
+
+target tokens: <s>A very long movie, dull in stretches, with entirely too much focus on meal preparation and igloo construction.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little different time. but and parts. but a predictable much action on the preparation. theuana-. It</s></s></s>ggggggggggggggblblblblblblbl
+################################################
+
+target tokens: <s>In XXX, Diesel is that rare creature -- an action hero with table manners, and one who proves that elegance is more than tattoo deep.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> theX the is the guy thing. a animal movie. a stakes. a a of is his he is not than aed insideIn</s></s></s>ggdgdgdggggblggggblbl
+################################################
+
+target tokens: <s>I'm not sure which will take longer to heal: the welt on Johnny Knoxville's stomach from a riot-control projectile or my own tortured psyche.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'m not sure what is be the. find. the firsteding or the orville or back or the week orlike situation or the own. mind. I</s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>While Serving Sara does have a long way to go before it reaches the level of crudity in the latest Austin Powers extravaganza, there's nothing here to match that movie's intermittent moments of inspiration.</s><pad><pad><pad>
+predicted tokens: <s><s> I the</s> not a few history to go, it is its point of successasseness, the film film Powers filmvaganza, it is still like to be the.. intensity brilliance of brilliance.4</s></s></s>
+################################################
+
+target tokens: <s>It's difficult to conceive of anyone who has reached puberty actually finding the characters in Slackers or their antics amusing, let alone funny.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a to find of a who would not this without being it time in theogan. The own funny. but alone entertaining.4</s></s>gggdgdgdgdggblblblblblblblblbl
+################################################
+
+target tokens: <s>It never is, not fully.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s ends. though even. It</s> is.ggggisisisisisisisisisisisisisis is isii------isisisisisisisbl
+################################################
+
+target tokens: <s>Not only is Undercover Brother as funny, if not more so, than both Austin Powers films, but it's also one of the smarter, savvier spoofs to come along in some time.</s><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> a that itwood Boss a a as it not more so. but the of and and. it it's also a of the most ones funnvier filmss. date.. years time.4</s></s></s>ggg
+################################################
+
+target tokens: <s>It should be mentioned that the set design and interiors of the haunted vessel are more than effectively creepy and moodily lit.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s be noted that the film of is theplay are the building house are not than just designed. creepyy creepy.The</s></s></s></s>sicgggggblggggblblbl</s>blbl
+################################################
+
+target tokens: <s>With the exception of some fleetingly amusing improvisations by Cedric the Entertainer as Perry's boss, there isn't a redeeming moment here.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> a help of the of-- momentsations, theric the Entertainer, wellman character, the is't much loting quality in. It</s></s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>It's a funny little movie with clever dialogue and likeable characters.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a good thing world. a lines and aable characters. It</s></s></s>ggg44blblblirlirlirlirlirlirlirl!!------blbl-isblbl
+################################################
+
+target tokens: <s>``13 Conversations'' holds its goodwill close, but is relatively slow to come to the point.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>I:ations with is a own and to but it also short and get to life surface of It</s></s></s></s>ggggggggblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Not the kind of film that will appeal to a mainstream American audience, but there is a certain charm about the film that makes it a suitable entry into the fest circuit.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> a best of thing that makes make to the young audience audience. but a is something film charm to it film. is it feel hit film into the world..4</s></s></s>ggggggggg
+################################################
+
+target tokens: <s>You come away wishing, though, that the movie spent a lot less time trying to make a credible case for reports from the afterlife and a lot more time on the romantic urgency that's at the center of the story.</s><pad><pad>
+predicted tokens: <s><s> can to with you hoping, that you world was more little more time on to get you good movie. itself of the past. more lot more time on the ground side of is driving the heart of it story.</s></s></s>
+################################################
+
+target tokens: <s>The movie is virtually without context -- journalistic or historical.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is called a a. it and otherwise. It</s></s></s>gggggstein.isisisisisis----!-----------isblbl
+################################################
+
+target tokens: <s>After sitting through this sloppy, made-for-movie comedy special, it makes me wonder if Lawrence hates criticism so much that he refuses to evaluate his own work.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> all for the,, un-for-TV-,, I's sense want what I is me. much. he would to take it own work.4</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>Genuinely touching because it's realistic about all kinds of love.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>esisly,. it's true. what of of things.�</s></s></s>ggginging...irlirlirlirl!irl!!!!!!-!!blblblblblbl
+################################################
+
+target tokens: <s>For all the complications, it's all surprisingly predictable.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> more the reasons, there's a worth simple. I</s></s></s>ggggg,,,,,,,,,,,,,,,,,,,,,,,,,,,
+################################################
+
+target tokens: <s>Armed with a game supporting cast, from the pitch-perfect Forster to the always hilarious Meara and Levy, Like Mike shoots and scores, doing its namesake proud.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>n with this gun of the, the the movie toperfect to Your to the over- anduppa, the, the a, down kills. the the best..The</s></s></s></s>gggggg
+################################################
+
+target tokens: <s>It will guarantee to have you leaving the theater with a smile on your face.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s be that be a laughing the room in a smile on your face.�</s></s>gggggggggirlirlirlirlirl</s>!!----blblblblblblbl
+################################################
+
+target tokens: <s>The misery of these people becomes just another voyeuristic spectacle, to be consumed and forgotten.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other of the people is a as reasoneuristic experience. a be enjoyed by then. It</s></s></s></s>gggggblblblblblis----blblblbl--blbl
+################################################
+
+target tokens: <s>A thoroughly awful movie -- dumb, narratively chaotic, visually sloppy... a weird amalgam of `The Thing' and a geriatric `Scream.'</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little entertaining movie. and and but, and, and and, and nightmare movieam of everything80 Shining' and''iatric nightmareTheream'"</s></s></s>gsicggggggg!gg
+################################################
+
+target tokens: <s>One of those staggeringly well-produced, joylessly extravagant pictures that keep whooshing you from one visual marvel to the next, hastily, emptily.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> of the isingly beautiful-o films wellous entertaining,. makes you youhing through back sleep place overload after another next. is shot isily, It</s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>Measured against practically any like-themed film other than its Oscar-sweeping franchise predecessor The Silence of the Lambs, Red Dragon rates as an exceptional thriller.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>eting and the nothing other-minded movie, than " own-winningeping,,, Nightmare of the Lambs, the is is a a " film.4</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>The movie has no respect for laws, political correctness or common decency, but it displays something more important: respect for its flawed, crazy people.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is been real for the or and parties or the sense. and it is a that. than the for the audience characters yet,.4</s></s></s>gggggggggg</s>!!g
+################################################
+
+target tokens: <s>In a strange way, Egoyan has done too much.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> the way way, itertonan is become exactly much. He</s></s></s>ggggisisisisisisisisisisisisis----------isblbl
+################################################
+
+target tokens: <s>After seeing the film, I can tell you that there's no other reason why anyone should bother remembering it.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> all the video, I was't you that it is a way way to I would be with this. It</s></s>ggggggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>The film is darkly funny in its observation of just how much more grueling and time-consuming the illusion of work is than actual work.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is about and comedic and its dark of the how much of darkeling life difficult consumingconsuming the process of control can. it work.4</s></s></s></s>ggggggggg</s>ggg
+################################################
+
+target tokens: <s>In some ways, Lagaan is quintessential Bollywood.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> the ways, it. is is aess Lollywood. He</s></s></s></s>ggbl44blirlirlirlirlirlisisirlirlirl----------isblbl
+################################################
+
+target tokens: <s>Pacino and Williams seem to keep upping the ante on each other, just as their characters do in the film.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>- said his are to be gettingpping the ante. the other. but to they relationship are. the movie.4</s></s></s></s>ggggggggggggggggblbl
+################################################
+
+target tokens: <s>It would be disingenuous to call Reno a great film, but you can say that about most of the flicks moving in and out of the multiplex.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s be auous to say it a " place. but it get't that about everything of the movieslicks. around that out of the theaterxes.4</s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>Some movies can get by without being funny simply by structuring the scenes as if they were jokes: a setup, delivery and payoff.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> of are be you without the funny. because beinguring them story. they they are..</s> little for a, a. This</s></s>gggggggggggggggblbl
+################################################
+
+target tokens: <s>Narc can only remind us of brilliant crime dramas without becoming one itself.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>ancyiss be be him of the ideas.. the one..4</s></s></s>gggggggblgggggirlis- is is----blbl--blbl
+################################################
+
+target tokens: <s>Narc is a no-bull throwback to 1970s action films.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>ancyiss a great-brainershiter to thes and films. It</s> is</s>ggggblblblblblirlblblblbl--------blbl--blbl
+################################################
+
+target tokens: <s>Intriguing and downright intoxicating.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>ouingly interesting scaryicating. I</s></s>gggggggblblirliiiirlirlirl--irlirl------- is-----blisisblbl
+################################################
+
+target tokens: <s>The wonderful combination of the sweetness and the extraordinary technical accomplishments of the first film are maintained, but its overall impact falls a little flat with a storyline that never quite delivers the original magic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other world of the two and the darkness isity of the world two. the by and the effects effect is short little short. the few that is quite works. desired vision.</s></s></s></s></s>ggggg
+################################################
+
+target tokens: <s>Perhaps the most annoying thing about Who Is Cletis Tout? is that it's a crime movie made by someone who obviously knows nothing about crime.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> the most important part is theop Thisaringus is. is is that he's not very.. in a who is doesn nothing about it.4</s></s></s>gggggggggggg
+################################################
+
+target tokens: <s>In addition to scoring high for originality of plot -- putting together familiar themes of family, forgiveness and love in a new way -- Lilo & Stitch has a number of other assets to commend it to movie audiences both innocent and</s>
+predicted tokens: <s><s> the to the a scores theity, the, the together a characters -- the and love, love -- a new way -- the' is Stitch is been new of other interesting. offer...goers. for and not
+################################################
+
+target tokens: <s>The quirky drama touches the heart and the funnybone thanks to the energetic and always surprising performance by Rachel Griffiths.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other and of on heart of soul mind parts of to the humor and entertaining- performances of the.s.4</s></s>gggggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>At its worst, it implodes in a series of very bad special effects.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> least best, it isodes. a spectacular of self ugly decisions effects. It</s></s></s>ggggggggggggblbl-------blblblblblbl
+################################################
+
+target tokens: <s>Bad and baffling from the get-go.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> news goodling. the start-go. But</s>ousousggggblbl4irlirlirlirlirliirlirlirlirlirli-- is----blblblblblblbl
+################################################
+
+target tokens: <s>The movie is a blast of educational energy, as bouncy animation and catchy songs escort you through the entire 85 minutes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is called great. fun and and and iscy and and a music. the through the film film-. It</s></s></s>gggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>The original wasn't a good movie but this remake makes it look like a masterpiece!</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other version't as success one. it one is it even better it good.4</s>gggggggggirlirlirlirl!!!!!!!!!!!!-blbl
+################################################
+
+target tokens: <s>To my taste, the film's comic characters come perilously close to being Amoses and Andys for a new generation.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> be surprise, the best is most book are offously close to being tooish. theros. the change take. I</s></s></s></s>gggggggggggblblg</s>blbl
+################################################
+
+target tokens: <s>Although the sequel has all the outward elements of the original, the first film's lovely flakiness is gone, replaced by the forced funniness found in the dullest kiddie flicks.</s><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> it name is been the ingredients signs of a original, it story is is story andopiness is still. leaving by a more,iness of in the originaler ofiddie filmlicks.4</s></s></s>ggg
+################################################
+
+target tokens: <s>The real charm of this trifle is the deadpan comic face of its star, Jean Reno, who resembles Sly Stallone in a hot sake half-sleep.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other story of the isamp is the factpan humor.. the creator. the-. who is a Stallone. the way take commercial-assed.4</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>... a cute and sometimes side-splittingly funny blend of Legally Blonde and Drop Dead Gorgeous, starring Piper Perabo in what could be her breakthrough role.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>and lot little funny scary-splitting video funny video of humoros Blonde and Thekick Gorgeous. too the Laurierette. the could be the best film.I</s></s></s>gggggggg
+################################################
+
+target tokens: <s>This method almost never fails him, and it works superbly here.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> is is always works.. but he's everyly.. It</s></s></s>gggingisisisisisisisisisisisis-----------blbl
+################################################
+
+target tokens: <s>Few films capture so perfectly the hopes and dreams of little boys on baseball fields as well as the grown men who sit in the stands.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>er are the much the feeling and dreams of the girls. the's. they as the dreamsups in are in the back.4</s></s></s>ggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>Steers has an unexpectedly adamant streak of warm-blooded empathy for all his disparate Manhattan denizens -- especially the a**holes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>fan around a interesting good stance of optimism andheartedness. the people subjects characters neighborsizens. including the womenuntsholes.The</s></s></s>ggggggggggggggggg
+################################################
+
+target tokens: <s>The Emperor's Club is one of those films that possesses all the good intentions in the world, but...</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is New is a of the places that is a the elements qualities but the world. but the it</s> is......sicggggggggblblblgblblblblblblblbl
+################################################
+
+target tokens: <s>The most compelling performance of the year adds substantial depth to this shocking testament to anti-Semitism and neo-fascism.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other important story of the year was to value to the story performance to the-int. anti-Nazascism.4</s></s></s></s>gggggggggg!blblgg-bl
+################################################
+
+target tokens: <s>LaBute can't avoid a fatal mistake in the modern era: He's changed the male academic from a lower-class Brit to an American, a choice that upsets the novel's exquisite balance and shreds the fabric of</s>
+predicted tokens: <s><s>urenellao be be the little mistake. this future world. he's a his world gaze landscape a male-class, to a American. and woman he'sets him entireist author beauty. makess its original of the
+################################################
+
+target tokens: <s>A biopic about Crane's life in the classic tradition but evolves into what has become of us all in the era of video.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> littleographical of the's life and the film film of with into a it become a the.. the last of the games4</s></s></s>ggggggblblblblblblblblblblbl
+################################################
+
+target tokens: <s>A work of extraordinary journalism, but it is also a work of deft and subtle poetry.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little in art art. it also's not a work of genius, creative art. It</s></s></s>gggggblblblblblblblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>... think of it as American Pie On Valium.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>and about it as a Idol. Iceium. "</s></s>.gggg434irlirlirlirlirlirlis-isirli-------blblblblblblbl
+################################################
+
+target tokens: <s>Gere gives a good performance in a film that doesn't merit it.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>onemy a brief look. the good. is't need a.4</s></s>gggingingisgblblblirlblblirlirlisis----------blbl
+################################################
+
+target tokens: <s>The movie is as far as you can get from racy, to the point where it almost stops the blood flow to your brain; it has a dull, costumey feel.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is called good from it can get from theaving to but the serious of it's seems being movie from. the brain. it's to very, boring- quality.�</s></s></s>ggggggg
+################################################
+
+target tokens: <s>The Pianist is Polanski's best film.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> otheraintedist is aite's son friend. It</s> is is isgg44en.irlirlirlirlirlirl is is isirl!--!!-----isisisblbl
+################################################
+
+target tokens: <s>Maybe Thomas Wolfe was right: You can't go home again.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> it Edison is right. " can't have home again. I</s></s></s></s>ggisisisisisisis.............---isisisis
+################################################
+
+target tokens: <s>The director, with his fake backdrops and stately pacing, never settles on a consistent tone.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other of however his wife name-, a- manner, is gets on a single theme. It</s></s></s>ggggggblblblirlblblblblblblblblbl-!blbl
+################################################
+
+target tokens: <s>Why he was given free reign over this project -- he wrote, directed, starred and produced -- is beyond me.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> I's so the reign to the area is and was: " and and in directed. is a me. I</s></s></s>ggggggggblgggblblblblblblblbl
+################################################
+
+target tokens: <s>If you enjoy being rewarded by a script that assumes you aren't very bright, then Blood Work is for you.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> you're this a for the little, is you are't, good, you youline is for you.�</s></s></s>gggggggblblblggblblblblblblblbl
+################################################
+
+target tokens: <s>Like Rudy Yellow Lodge, Eyre needs to take a good sweat to clarify his cinematic vision before his next creation and remember the lessons of the trickster spider.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> this,,, theeb is to be a break look session get his position vision. he next performance. his his meaning he the past...4</s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>But his showboating wise-cracker stock persona sure is getting old.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> it most isating is,crunch is is is is a a. He</s></s></s>ingingggblblblblk!!.........-----isbl
+################################################
+
+target tokens: <s>Circuit queens won't learn a thing, they'll be too busy cursing the film's strategically placed white sheets.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>us of and't be from thing from but say learn too busy playing. world. creators- stars elephant.�</s></s></s>gggggggggggggblblblblblblbl
+################################################
+
+target tokens: <s>A lot of talent is wasted in this crass, low-wattage endeavor.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little of people is wasted on this areaony, self-browattage,. It</s></s></s></s>ggggggblblirlirlirlblblbl-isblblblblblblblbl
+################################################
+
+target tokens: <s>Alain Choquart's camera barely stops moving, portraying both the turmoil of the time and giving Conduct a perpetual sense of urgency, which, for a film that takes nearly three hours to unspool, is both funny and irritating</s>
+predicted tokens: <s><s>as dein: book is works moving. but a a man and the moment and the aive more smile of calm.</s> is in the</s>, is place a hours, filmpackool, is a terrifying and terrifying.
+################################################
+
+target tokens: <s>The second coming of Harry Potter is a film far superior to its predecessor.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is of the Potter is coming little that more to the predecessor.3</s></s></s>gggg</s>blblblblblblblblbl</s>isblbl--blblblblblblblbl
+################################################
+
+target tokens: <s>This stuck pig of a movie flails limply between bizarre comedy and pallid horror.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> is in is a pig isickers aroundply around the and and sadid horror. It</s></s></s>ggggggblblblblblblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>The film just might turn on many people to opera, in general, an art form at once visceral and spiritual, wonderfully vulgar and sublimely lofty -- and as emotionally grand as life.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is came be out the of. see. but particular. and experience form that this. and beautiful. and beautiful and beautiful. beautiful. and also a drainingi a itself4</s></s></s>gggggg
+################################################
+
+target tokens: <s>The delicious trimmings... arrive early and stay late, filling nearly every minute... with a lighthearted glow, some impudent snickers, and a glorious dose of humankind's liberating ability to triumph over a Scrooge</s>
+predicted tokens: <s><s> other andifleings of and in. stay late. and the every room of and a little and,. and ofossiblyent humorark and and some few sense of humor. best spirit to be over the darkrooge McD
+################################################
+
+target tokens: <s>The inhospitability of the land emphasizes the spare precision of the narratives and helps to give them an atavistic power, as if they were tales that had been handed down since the beginning of time.</s><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> otherospitable of the human is the importance nature of the human. the to make the a airypistic quality. like well they were a of could been written down for the beginning. time.4</s></s></s>gg
+################################################
+
+target tokens: <s>Even more baffling is that it's funny.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> more importantling is the the is not. I</s>gggggblblbl. even................... with with with with--
+################################################
+
+target tokens: <s>Parker should be commended for taking a fresh approach to familiar material, but his determination to remain true to the original text leads him to adopt a somewhat mannered tone... that ultimately dulls the human tragedy at the story's</s>
+predicted tokens: <s><s>er's be inended for his the stand look to theizing. but he approach is make a to his original is is him ast a a more differentnered approach.</s>'s iss the message spirit." its end's end
+################################################
+
+target tokens: <s>Hard, endearing, caring, warm.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> to hard of, and, and, It</s>.ggingggblblblirlirlirlirlirl44irlirl44444..-----isisiisblbl
+################################################
+
+target tokens: <s>I have no problem with ``difficult'' movies, or movies that ask the audience to meet them halfway and connect the dots instead of having things all spelled out.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'m a idea with thisTheicult'' or. but " that are for question to be the.. then with dots. of just them come come out.�</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>The way Coppola professes his love for movies -- both colorful pop junk and the classics that unequivocally qualify as art -- is giddily entertaining.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other Iacheola seeses his love for the is it good and and and classic more -- he define as " -- is aoryily ironic.4</s></s></s></s>gggggggg!gg
+################################################
+
+target tokens: <s>Both the crime story and the love story are unusual.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> are book and and the movie story are worth. The</s></s></s></s>gg44is-...------.........- with with- with with with
+################################################
+
+target tokens: <s>It's never a good sign when a film's star spends the entirety of the film in a coma.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a too good time when you child is title is the night of the film's a hotel.4</s></s></s>gggggggblggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>A creaky staircase gothic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> littlepe, inirdic-A</s>..ggggg.blblisisisis is is is isis is is is is is is is is is isisisblblblisblbl
+################################################
+
+target tokens: <s>If there's a way to effectively teach kids about the dangers of drugs, I think it's in projects like the (unfortunately R-rated) Paid.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> you is one lesson to make combat this about the importance of self, it'm it's through the like this onenowsuccessful)-rated) " Suicide I</s></s></s>ggggggggg</s>g
+################################################
+
+target tokens: <s>If you're a WWF fan, or you related to the people who watched the robots getting butchered in A.I., you'll probably like Rollerball.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> you're not fan fan, you a're to one team in are the movie, killedchered, the-I., you're love be thisball. I</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>Norton holds the film together.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>ancyon's a title's with It</s></s></s> isgg isblblblblini........................<s><s>
+################################################
+
+target tokens: <s>A breathtaking adventure for all ages, Spirit tells its poignant and uplifting story in a stunning fusion of music and images.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> littlely awaits the the. and of us story story beautifulifting story. this new way of art and art. It</s></s></s></s>ggg</s>ggblblg!!!bl!!!blbl
+################################################
+
+target tokens: <s>It won't bust your gut -- and it's not intended to -- it's merely a blandly cinematic surgical examination of what makes a joke a joke.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s't be your heart. it it's not even to. but's a a little, entertaining representation fantasy. the's a good. joke.4</s></s></s>gggggggggggg
+################################################
+
+target tokens: <s>Largely a for-fans artifact.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>ly because result-profitool-, It</s>..isisggblblblblirlirlirlirlirl-irlirlirlirlirli-------blblblblblblbl
+################################################
+
+target tokens: <s>A movie so bad that it quickly enters the pantheon of wreckage that includes Battlefield Earth and Showgirls.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little about far it it's became the publicheon of the. is the 1. Thegirls. It</s></s></s>gggggggggblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>If you're over 25, have an IQ over 90, and have a driver's license, you should be able to find better entertainment.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> you're not the, you a opinion of 100. you you a good's license, you're be fine to drive a options. I</s></s></s>ggggggggggggggg
+################################################
+
+target tokens: <s>A solid piece of journalistic work that draws a picture of a man for whom political expedience became a deadly foreign policy.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little, of work work. is on lot of the world who whom nothing actioniency is a secondary obsession object tool4</s></s></s></s>gggggggggggblblblblblblbl
+################################################
+
+target tokens: <s>The doofus-on-the-loose banter of Welcome to Collinwood has a cocky, after-hours loopiness to it.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> otheromsdayus isand-the-moonose- is the to theisionwood is been newy, self-hours-. to it. It</s></s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>It's the funniest American comedy since Graffiti Bridge.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a bestiest thing movie I theuman.. It</s></s></s>ggggis4blirlirlirlirlirlirlisisirlirlis------blblblblblblbl
+################################################
+
+target tokens: <s>Samuel Beckett applied to the Iranian voting process.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>uel'sett's for be job government pool. He</s></s></s></s>gggg2244blblblblbl is isirlirl-- is is-------isblbl
+################################################
+
+target tokens: <s>A strangely compelling and brilliantly acted psychological drama.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little beautiful story beautiful ironic film thriller. It</s>.gggggg4blbl.1111111111111111111blblblblblbl
+################################################
+
+target tokens: <s>Often gruelling and heartbreaking to witness, but Seldahl and Wollter's sterling performances raise this far above the level of the usual maudlin disease movie.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> timesislling, exhausting, watch, the alsoinfelden is hisintman are story work are the question beyond the average of the average.alalin...4</s></s></s>gggggggg
+################################################
+
+target tokens: <s>This enthralling documentary... is at once playful and haunting, an in-depth portrait of an iconoclastic artist who was fundamentally unknowable even to his closest friends.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> isailedalling story is is a the terrifying and terrifying. and o-your look of a artistocastic,. is never flawedable. to himself own friends. It</s></s></s>gggggggg
+################################################
+
+target tokens: <s>I didn't laugh at the ongoing efforts of Cube, and his skinny buddy Mike Epps, to make like Laurel and Hardy'n the hood.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'m't know out the irony joke to the to but I team-,,.. to get this a and Hardy.</s>' gang. I</s></s></s></s>gggggggggggg
+################################################
+
+target tokens: <s>At its best when the guarded, resentful Betty and the manipulative yet needy Margot are front and center.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> least best, it stakes is theful and is her rest, loving,ot are together and center.The</s></s></s>gggggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>Ford deserves to be remembered at Oscar time for crafting this wonderful portrait of a conflicted soldier.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a be in for least's. his a masterpiece film of a man man.4</s></s></s>gggg</s>blblblirlirlirl!-----------blbl
+################################################
+
+target tokens: <s>That is essentially what's missing from Blackboards -- the sense of something bigger, some ultimate point.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s, what it happening. the Friday. a information of community is than something kind purpose of I</s></s></s></s>sicggggblblblblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>It's a bizarre curiosity memorable mainly for the way it fritters away its potentially interesting subject matter via a banal script, unimpressive acting and indifferent direction.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a good world. and for its fact it makesizzters away time time valuable information matter. a seriesal,. butinterestingressive and and a writing. It</s></s></s>ggggggggg
+################################################
+
+target tokens: <s>While obviously an extremely personal work, it remains inextricably stuck in an emotionally unavailable rut.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> I not important difficult decision of it is a thericably linked in the interesting charged placeut. It</s></s></s>ggggggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>A dim-witted and lazy spin-off of the Animal Planet documentary series, Crocodile Hunter is entertainment opportunism at its most glaring.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little viewwitted, slightly mansteroff of the original Planet show,. theokedile Dund. a foristic at its finest sinister.4</s></s></s></s>gggggggggggg
+################################################
+
+target tokens: <s>The good is very, very good... The rest runs from mildly unimpressive to despairingly awful.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other news that good very good. and bad is on there toappressive to downrighting bad. I</s></s></s>gggggggblggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Methodical, measured, and gently tedious in its comedy, Secret Ballot is a purposefully reductive movie -- which may be why it's so successful at lodging itself in the brain.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>ology and but, and well entertaining. its approach. it Garden is is a very unctive and. and is be why it's so good. all.. the first.4</s></s></s>gggggg
+################################################
+
+target tokens: <s>One of the most exciting action films to come out of China in recent years.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> of the most important things movies of come out of the is years years isThe</s></s></s>ging4444blblirlirlirlirlirlis------blblblblblblbl
+################################################
+
+target tokens: <s>Adam Sandler's Eight Crazy Nights grows on you -- like a rash.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> andler's "- Nights is to him. and a monster ofIt</s></s></s>ginginggggblblirlirlirlirlirlirlirlirlblbl--blblblblblblblbl
+################################################
+
+target tokens: <s>The film feels formulaic, its plot and pacing typical Hollywood war-movie stuff, while the performances elicit more of a sense of deja vu than awe.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is likeic and but message is characters predictable of.-movie fare. but the characters are a emotion the sense of wonderja vu. the. It</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>... pitiful, slapdash disaster.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>andiful. patheticstick,. It</s>..gisisisisis44,,,,,,,, In In In In In In In In In In In In In In In In In In In
+################################################
+
+target tokens: <s>As it stands, there's some fine sex onscreen, and some tense arguing, but not a whole lot more.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> for turns, the is no good art in the. but some pretty scenes. but nothing much lot lot of. I</s></s></s>gggggggggggggblblggblbl
+################################################
+
+target tokens: <s>It's neither as romantic nor as thrilling as it should be.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a here simple nor as scary as it sounds be. But</s></s></s>gggingingisisirlirlirlirlirlisisisisis----------isblbl
+################################################
+
+target tokens: <s>Returning director Rob Minkoff... and screenwriter Bruce Joel Rubin... have done a fine job of updating White's dry wit to a new age.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> to to ofbyottowski ismore hiswriter, D...... and a it great job. it the House work,. the more level.The</s></s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>The Venezuelans say things like ``si, pretty much'' and ``por favor, go home'' when talking to Americans.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> otherans are they like,I-si,, and ``sousit not to'' are they about the.�</s></s></s></s>sicsicisisgggggblblblblblblblbl
+################################################
+
+target tokens: <s>If you already like this sort of thing, this is that sort of thing all over again.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> you're know to article of thing, you is a kind of thing. the again. I</s></s></s></s>ggggggblgblirlblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>An awful movie that will only satisfy the most emotionally malleable of filmgoers.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>nie lot.'s make get the most dedicated disturbedadjustedable of people-.The</s></s>ggggggggblblblirlirlisblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>This is an extraordinary film, not least because it is Japanese and yet feels universal.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> is a excellent story. and to because it is so. it it so. It</s></s>gggggggblblblblblblbl-------blbl-blblbl
+################################################
+
+target tokens: <s>Aptly named, this shimmering, beautifully costumed and filmed production doesn't work for me.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> littlely named, the ising, shimmer designedumed, well film is't come. everyone. I</s></s></s>ggggggggggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>If Borstal Boy isn't especially realistic, it is an engaging nostalgia piece.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> youger is is't your interesting, then's a interesting and trip. I</s>boyboyisisisblblblblblblblblblblblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Griffiths proves she's that rare luminary who continually raises the standard of her profession.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>antedith' to's not good breedinary. can surprises the bar of living work. She</s></s></s></s>gggggblblblirlblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>The asylum material is gripping, as are the scenes of Jia with his family.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is is not. but is the stories of terror.- her family. It</s></s></s>gggg4blblblblirlirlirl</s> is isblblisblblblblblblblbl
+################################################
+
+target tokens: <s>... by the time it's done with us, Mira Nair's new movie has its audience giddy with the delight of discovery, of having been immersed in a foreign culture only to find that human nature is pretty much the</s>
+predicted tokens: <s><s>and the way you's over... wea willove will life book will already own.iddy with excitement possibilities of the. and course found found in a new culture.. be out it</s> is not much gone same
+################################################
+
+target tokens: <s>... about as exciting to watch as two last-place basketball teams playing one another on the final day of the season.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>and the good as me as it--minute teams teams. in another. a same day of the season.4</s></s></s></s>ggggggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Girls gone wild and gone civil again</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> Night wild, the crazy war.</s></s></s>gggirl2... and and and and and and and and and and and and and and and and and and and and and and and and and and and and
+################################################
+
+target tokens: <s>To say Analyze That is De Niro's best film since Meet the Parents sums up the sad state of his recent career.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> be thetical This is aceptiveiro is favorite work is " the Parents is it the experience reality of affairs career work.4</s></s></s>sicsicggggblggirlblblblg</s>blbl
+################################################
+
+target tokens: <s>Like being trapped inside a huge video game, where exciting, inane images keep popping past your head and the same illogical things keep happening over and over again.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> this a in a box, game. it you and but- and are coming up your eyes. you screen oldogical thoughts keep happening. and over again.4</s></s></s>gggggggggg
+################################################
+
+target tokens: <s>`Enigma' is the kind of engaging historical drama that Hollywood appears to have given up on in favor of sentimental war movies in the vein of `We Were Soldiers.'</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>Ilight of is a most of thing, drama that makes loves to be perfected up on. the of.ism.. the past of 'The Will Eight'</s></s></s></s>ggngngnggggg
+################################################
+
+target tokens: <s>The Rock has a great presence but one battle after another is not the same as one battle followed by killer CGI effects.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is a new deal in it of is another. being worth one. the another after by another... It</s></s></s>gggggggggggggggggblbl
+################################################
+
+target tokens: <s>Visually sumptuous but intellectually stultifying.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>iting,minguous, not dullaidifying. I</s></s></s>ggggggirlirlirlirlirlirlirlirlisirlirlirl---bl--blblblblblblblbl
+################################################
+
+target tokens: <s>So young, so smart, such talent, such a wise ***.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>, and so beautiful, so a. so beauty beautiful decision. I</s></s></s></s>gg.....isis..isisisisis..-isirlirlirl-isisisirl
+################################################
+
+target tokens: <s>The problem is that for the most part, the film is deadly dull.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is, it the most part, it solution is a.. It</s></s></s>ggingisisblblblirl.........---!-!--blbl
+################################################
+
+target tokens: <s>A thinly veiled look at different aspects of Chinese life clashing with each other.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little veiled attack at the aspects of the culture.ashing with the other. It</s></s></s>gggggblblblblblblblblbl</s>blblblblblblblblblblblbl
+################################################
+
+target tokens: <s>An exhilarating experience.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>nieating and. I</s></s></s>ggg.....irl............ " " " " " " " " " " " " " " " " "
+################################################
+
+target tokens: <s>Its vision of that awkward age when sex threatens to overwhelm everything else is acute enough to make everyone who has been there squirm with recognition.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> a is the is, is you is to destroy you.. a. to make it feel is ever there feelirm. fear.4</s></s>gggdgdgdggggggggggg
+################################################
+
+target tokens: <s>Remarkably accessible and affecting.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>inderably,, easy, It</s>..gdis....irlirl The In In In In In In In In In In In In In In In In In In In In In In In In In In
+################################################
+
+target tokens: <s>The climactic events are so well realized that you may forget all about the original conflict, just like the movie does.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> otheractic scene of still dramatic- that they can not that the the rest plan. the like you original..4</s></s></s>gggggggggggggblblggblbl
+################################################
+
+target tokens: <s>Distinctly sub-par... more likely to drown a viewer in boredom than to send any shivers down his spine.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>urive different-par. and... to be in child's a. to make them messageivers down their spine.4</s></s></s>ggggggggggggggggblbl
+################################################
+
+target tokens: <s>Godard's ode to tackling life's wonderment is a rambling and incoherent manifesto about the vagueness of topical excess... In Praise of Love remains a ponderous and pretentious endeavor that's unfocused and ted</s>
+predicted tokens: <s><s> is's Lawde to the the's biggest is is a mustousing, entertainingherent mess. the importanceaguest of lifeity.and theise of the. a workous and unentious work. is not and uniously
+################################################
+
+target tokens: <s>Shamelessly resorting to pee-related sight gags that might even cause Tom Green a grimace; still, Myer's energy and the silliness of it all eventually prevail.</s><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>aringly,ing to theingpee humor-ags. are be be a Cruise to littleace.), it God is a is humor wayiness of the all is makes.4</s></s></s>ggggg
+################################################
+
+target tokens: <s>We never truly come to care about the main characters and whether or not they'll wind up together, and Michele's spiritual quest is neither amusing nor dramatic enough to sustain interest.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> are know know to terms about the details character. their they not they are be up in again we that is story journey is still here nor satisfying.. warrant her.�</s></s></s>gggggggg
+################################################
+
+target tokens: <s>Most haunting about ``Fence'' is its conclusion, when we hear the ultimate fate of these girls and realize, much to our dismay, that this really did happen.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> of of theTherozen of is the lack. which it are it words message of the people is their that " to our surprise, that they is is happen.4</s></s></s>ggggggggg
+################################################
+
+target tokens: <s>Bogdanovich taps deep into the Hearst mystique, entertainingly reenacting a historic scandal.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>eneusovich: into into his depthsst familyique. and the.-acting the scene event.The</s></s></s></s>ggggggggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Peralta's mythmaking could have used some informed, adult hindsight.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>izzata is new is is be been some work discussion more-. Buta</s> would wouldinging4blblblblblblblblblirlisis is is is- isblblblblblblbl
+################################################
+
+target tokens: <s>``My god, I'm behaving like an idiot!''</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>I name, I'm so like a idiot.''"</s></s></s>gggg. fucking........, and and and.............
+################################################
+
+target tokens: <s>Devos and Cassel have tremendous chemistry -- their sexual and romantic tension, while never really vocalized, is palpable.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>il is theaman been potential. and chemistry chemistry romantic chemistry is for their being being,, is palpable.�</s></s></s>gggggggggggggggggblbl
+################################################
+
+target tokens: <s>As a girl-meets-girl romantic comedy, Kissing Jessica Steinis quirky, charming and often hilarious.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> for result,girlets-girl,,, I Me the is is a and but and funny hilarious. It</s></s></s>ggggggblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Gollum's `performance' is incredible!</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>oneum's bookThe' is a. It</s>''ggggg4.. is is--- is is is is is is is is is is is is is is is!!!gg
+################################################
+
+target tokens: <s>... a haunting vision, with images that seem more like disturbing hallucinations.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>and lotly of and a of make to like a nightmares.The</s></s></s>ggg44blbl.blirlirl!!irlirl!!!-----blblblblblbl
+################################################
+
+target tokens: <s>As a remake, it's a pale imitation.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> for result of it's a little imitation of It</s></s>gggggblblirl.irlirlirl........-!!!!--!!!,,blbl
+################################################
+
+target tokens: <s>Adults will certainly want to spend their time in the theater thinking up grocery lists and ways to tell their kids how not to act like Pinocchio.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>rian are be be to know more time with the kitchen. about new store. making to make the kids to to to act. aocchio.�</s></s></s></s>ggggggggggg
+################################################
+
+target tokens: <s>Not as distinctive or even as humorous as its needs to be to stand out, but it has clearly been made with affection and care.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> a bad as as as interesting as the name to be. be out. but still's its been a for a. care. It</s></s>gggdgdggggggggggggg
+################################################
+
+target tokens: <s>A generic family comedy unlikely to be appreciated by anyone outside the under-10 set.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little version portrait. to be a by everyone. the family-30 crowd.4</s></s>ggggggblblirlirlirlirlirlirl</s></s>---blblblblblblblbl
+################################################
+
+target tokens: <s>An amalgam of The Fugitive, Blade Runner, and Total Recall, only without much energy or tension.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>nieamation of all Beatlesitive and The Runner, and The Recall. it with the of. humor.The</s></s></s>ggggggggblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Everything its title implies, a standard-issue crime drama spat out from the Tinseltown assembly line.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> is about implies. it lot ofissue response... of the 1980seltowns..4</s></s></s>gggggggblggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>This odd, poetic road movie, spiked by jolts of pop music, pretty much takes place in Morton's ever-watchful gaze -- and it's a tribute to the actress, and to her inventive director, that the</s>
+predicted tokens: <s><s> is and but, trip is " with aolting of adrenaline culture, is much sums place in a's basement-presentful,. and it's not pretty to the man. who her the. mind, Michael's movie
+################################################
+
+target tokens: <s>Co-writer/director Jonathan Parker's attempts to fashion a Brazil-like, hyper-real satire fall dreadfully short.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>pperauthor ofdirector of Dem is book to make a new-themed film "-realistic are flatfully short ofThe</s></s></s></s>gggggblblgggblblblgblblbl
+################################################
+
+target tokens: <s>An amateurish, quasi-improvised acting exercise shot on ugly digital video.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>nie historian, but-religiousprovised, career. at the, video. It</s></s></s></s>gggblblblblblblblblblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>``The Kid Stays in the Picture'' is a great story, terrifically told by the man who wrote it but this Cliff Notes edition is a cheat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>I other'says in the Picture'' is a great film. but movie written. a kids himself wrote it. not is's version is better little sheet It</s></s></s></s>gggggggggg
+################################################
+
+target tokens: <s>A gratingly unfunny groaner littered with zero-dimensional, unlikable characters and hackneyed, threadbare comic setups.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> littleisly simpleunny andpe.. the the-sum details unikable,. aneyed, unbare, books. It</s></s></s>gggggggggggggg
+################################################
+
+target tokens: <s>While this gentle and affecting melodrama will have luvvies in raptures, it's far too slight and introspective to appeal to anything wider than a niche audience.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> I is reminder loving messageodrama is be youivenvies, theures, it will not from short for toospective for be to the but than the few audience.4</s></s></s>ggggggg
+################################################
+
+target tokens: <s>Griffin & Co. manage to be spectacularly outrageous.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>anted's the. are to get a. entertaining. It</s></s></s></s>gggis............ is is is is is is is is is is is is is!
+################################################
+
+target tokens: <s>A profoundly stupid affair, populating its hackneyed and meanspirited storyline with cardboard characters and performers who value cash above credibility.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little different and. but culture the ownneyed and overlessited world. a cut and a. are their over all. It</s></s></s>ggdgdgdgggblblblblblblblblbl
+################################################
+
+target tokens: <s>Warm Water Under a Red Bridge is a quirky and poignant Japanese film that explores the fascinating connections between women, water, nature, and sexuality.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>alkingth, the Hot Sun. a great and beautiful film film. is the world world between the and science, and and and the. It</s></s></s></s>ggggggggggggg
+################################################
+
+target tokens: <s>It isn't that Stealing Harvard is a horrible movie -- if only it were that grand a failure!</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s't. easy. is is a bad idea. it it it were that bad. movie. --</s> isgggggggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>It just doesn't have much else... especially in a moral sense.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s doesn't work to to toI when the place sense. I</s></s></s>gggggisisisisirlirlisisisisisis----------blbl
+################################################
+
+target tokens: <s>Those unfamiliar with Mormon traditions may find The Singles Ward occasionally bewildering.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> are with the history might be it Mormonularity' a amusingering. But</s></s></s>gggg</s></s></s>blblbl</s></s></s></s></s>-------blblblblblbl
+################################################
+
+target tokens: <s>Viewed as a comedy, a romance, a fairy tale, or a drama, there's nothing remotely triumphant about this motion picture.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> from from a whole of it comedy and and thriller tale, and a caution, it is nothing wrong funny about it. picture. It</s></s></s>ggggggggggblgggblbl
+################################################
+
+target tokens: <s>But the talented cast alone will keep you watching, as will the fight scenes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> it real and of is not the entertained. and will the music against. It</s></s></s>ggggfblblirlirlirlirlirlirl!!!!--------blbl
+################################################
+
+target tokens: <s>It's solid and affecting and exactly as thought-provoking as it should be.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a. it. it what it.provoking as it sounds be. It</s></s></s>ggggfblblirlirlirlirlirlirl-blbl--blblblblblblblbl
+################################################
+
+target tokens: <s>Thanks largely to Williams, all the interesting developments are processed in 60 minutes -- the rest is just an overexposed waste of film.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> to to the, we of work things are happening into a minutes. and rest is a a afterxposure mess of time.4</s></s></s>ggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>Cantet perfectly captures the hotel lobbies, two-lane highways, and roadside cafes that permeate Vincent's days</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>razyona,. the essence'sies' and-story streets and and the attractions of makeate the's world.</s></s></s>gggggggblggggblblblgblblbl
+################################################
+
+target tokens: <s>An important movie, a reminder of the power of film to move us and to make us examine our values.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>nie lesson is " very of the importance of the, make people, our make us think our lives.The</s></s></s>gggggggggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Too much of this well-acted but dangerously slow thriller feels like a preamble to a bigger, more complicated story, one that never materializes.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> late information a is-meaning film not over- is like a movie-ble to a much story more sinister story. which that is endsizes.4</s></s></s></s>gggggggg!gg
+################################################
+
+target tokens: <s>A richly imagined and admirably mature work from a gifted director who definitely has something on his mind.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little and varied world wellirably executed story of a master and. is has a to the mind.4</s></s>gggggggggblblggblblblblblblblblbl
+################################################
+
+target tokens: <s>The art direction is often exquisite, and the anthropomorphic animal characters are beautifully realized through clever makeup design, leaving one to hope that the eventual DVD release will offer subtitles and the original Italian-language soundtrack.</s><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other of is not more. but the resultsomorph nature is are often rendered. the and.. and the with wonder for the next result will will be more. more like artwork filmlanguage film.4</s></s></s></s>g
+################################################
+
+target tokens: <s>... Jones, despite a definitely distinctive screen presence, just isn't able to muster for a movie that, its title notwithstanding, should have been a lot nastier if it wanted to fully capitalize on its lead's specific gifts.</s>
+predicted tokens: <s><s>and is for his few not voice name, is doesn't the to make the a full. is well not suggests, is be been a hit moreastier. it was to be be on the potential. potential strengths.4
+################################################
+
+target tokens: <s>But what's nice is that there's a casual intelligence that permeates the script.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> it about really is that it's no lot way to'sates the entire. It</s>gggggggblblblblblblirlis is is is is- isblblblblblblbl
+################################################
+
+target tokens: <s>Wedding feels a bit anachronistic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>alkinging planning like little likeemicronistic, It</s></s></s>gggggisisisirlirlirlirlirlis isirlirlirl is is is is is--blblblisblblbl
+################################################
+
+target tokens: <s>An action/thriller of the finest kind, evoking memories of Day of the Jackal, The French Connection, and Heat.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>nie-adriller movie a week kind. thisocative the of the of the Deadal. and Great Connection and and more.It</s></s></s>ggggggggggggggbl
+################################################
+
+target tokens: <s>This picture is murder by numbers, and as easy to be bored by as your ABC's, despite a few whopping shootouts.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> is is from. another. but it such as find found as as it favorites. but the lot good pointsouts.The</s></s></s>gsicggggggggggg</s></s></s>g
+################################################
+
+target tokens: <s>Every individual will see the movie through the prism of his or her own beliefs and prejudices, but the one thing most will take away is the sense that peace is possible.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>day is have their value. their eyes of their own her own personal. experiences. and it movie thing that people see away from the fact of he is possible.</s></s></s></s>ggggggggg
+################################################
+
+target tokens: <s>Feels slight, as if it were an extended short, albeit one made by the smartest kids in class.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>eling likeed but if it's a insult family- but a that for a author person in the. It</s></s>ggggggggggggggblblblblblblblbl
+################################################
+
+target tokens: <s>The picture doesn't know it's a comedy.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other is't look itself's own picture of It</s>ggggggblblisisisisisisisisisis.......-----isisisblbl
+################################################
+
+target tokens: <s>A classy item by a legend who may have nothing left to prove but still has the chops and drive to show how its done.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> little,. the classy. is be been to to say. is has a ability to the to make it classy done.4</s></s></s>ggggggggg!ggggggbl
+################################################
+
+target tokens: <s>Starts out mediocre, spirals downward, and thuds to the bottom of the pool with an utterly incompetent conclusion.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>aying at with, endsaling out and and endsunders into a ground. the ocean. a ominous un ending. It</s></s></s></s>gggggggggggblblblgblblbl
+################################################
+
+target tokens: <s>The sort of movie that gives tastelessness a bad rap.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> other of thing that makes youeless, to whole name. I</s></s></s>ggggfblblblblblblblblisirlirlirl-----is-blbl-isblbl
+################################################
+
+target tokens: <s>Its engaging simplicity is driven by appealing leads.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> a and is a by the to. It</s></s>isisgggggg..........s..sen...</s></s></s></s>- with with with with with-
+################################################
+
+target tokens: <s>Fans of the TV series will be disappointed, and everyone else will be slightly bored.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s> of the show show " be pleased. however not will will be happy amused. But</s></s>ggggggblblirlirlirlirlirlirl. is----blblblblblblbl
+################################################
+
+target tokens: <s>It's a head-turner -- thoughtfully written, beautifully read and, finally, deeply humanizing.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a goodyscing. and you planned and well executed, well of, well moving.. It</s></s>gggggggggblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Bray is completely at sea; with nothing but a Savage Garden music video on his resume, he has no clue about making a movie.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>eneden a wrong peace. he no to the few's. video. his mind. he's no idea what the a comeback.4</s></s></s>ggdgdgdggggggggggg
+################################################
+
+target tokens: <s>It's not a particularly good film, but neither is it a monsterous one.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s a a pretty exciting look. but it is it a bad. one. It</s></s>ggggggblblblblblblblblblblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Men in Black II achieves ultimate insignificance -- it's the sci-fi comedy spectacle as Whiffle-Ball epic.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>'s Black:: a successificance. and's a only-fi version.. aiplen</s>Up</s>.The</s></s></s>gggggblblblblblblblblblblblbl
+################################################
+
+target tokens: <s>Martyr gets royally screwed and comes back for more.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>
+predicted tokens: <s><s>inezdom aally screwed over he out to more. It</s></s></s>ggggis.isirlirlirlirlirlirl-isirlirlis---------isisblbl
+################################################
+
+test loss: 4.323552

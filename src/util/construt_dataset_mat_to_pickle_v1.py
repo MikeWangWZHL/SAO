@@ -9,16 +9,22 @@ import pickle
 
 
 """config"""
-version = 'old' # 'new'
-task_name = 'SR'
-if version == 'old':
-    # old version 
-    input_mat_files_dir = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/Matlab_files' 
-elif version == 'new':
-    # new version, mat73 
-    input_mat_files_dir = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR-Jan2019/Matlab_files' 
+version = 'v1' # 'old'
+# version = 'v2' # 'new'
 
-output_dir = '/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/task1-SR/pickle'
+task_name = 'task1-SR'
+# task_name = 'task2-NR'
+# task_name = 'task3-TSR'
+# task_name = 'task2-NR-2.0'
+
+if version == 'v1':
+    # old version 
+    input_mat_files_dir = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/{task_name}/Matlab_files' 
+elif version == 'v2':
+    # new version, mat73 
+    input_mat_files_dir = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/{task_name}/Matlab_files' 
+
+output_dir = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/dataset/ZuCo/{task_name}/pickle'
 
 """load files"""
 mat_files = glob(os.path.join(input_mat_files_dir,'*.mat'))
@@ -29,10 +35,11 @@ for mat_file in tqdm(mat_files):
     subject_name = os.path.basename(mat_file).split('_')[0].replace('results','').strip()
     dataset_dict[subject_name] = []
     
-    if version == 'old':
+    if version == 'v1':
         matdata = io.loadmat(mat_file, squeeze_me=True, struct_as_record=False)['sentenceData']
-    else:
+    elif version == 'v2':
         matdata = h5py.File(mat_file,'r')
+        print(matdata)
 
     for sent in matdata:
         word_data = sent.word
@@ -40,7 +47,10 @@ for mat_file in tqdm(mat_files):
             # sentence level:
             sent_obj = {'content':sent.content}
             sent_obj['sentence_level_EEG'] = {'mean_t1':sent.mean_t1, 'mean_t2':sent.mean_t2, 'mean_a1':sent.mean_a1, 'mean_a2':sent.mean_a2, 'mean_b1':sent.mean_b1, 'mean_b2':sent.mean_b2, 'mean_g1':sent.mean_g1, 'mean_g2':sent.mean_g2}
-            sent_obj['answer_EEG'] = {'answer_mean_t1':sent.answer_mean_t1, 'answer_mean_t2':sent.answer_mean_t2, 'answer_mean_a1':sent.answer_mean_a1, 'answer_mean_a2':sent.answer_mean_a2, 'answer_mean_b1':sent.answer_mean_b1, 'answer_mean_b2':sent.answer_mean_b2, 'answer_mean_g1':sent.answer_mean_g1, 'answer_mean_g2':sent.answer_mean_g2}
+
+            if task_name == 'task1-SR':
+                sent_obj['answer_EEG'] = {'answer_mean_t1':sent.answer_mean_t1, 'answer_mean_t2':sent.answer_mean_t2, 'answer_mean_a1':sent.answer_mean_a1, 'answer_mean_a2':sent.answer_mean_a2, 'answer_mean_b1':sent.answer_mean_b1, 'answer_mean_b2':sent.answer_mean_b2, 'answer_mean_g1':sent.answer_mean_g1, 'answer_mean_g2':sent.answer_mean_g2}
+            
             # word level:
             sent_obj['word'] = []
             
@@ -76,7 +86,9 @@ for mat_file in tqdm(mat_files):
             dataset_dict[subject_name].append(sent_obj)
 
         else:
-            print(f'missing sent: subj:{subject_name} content:{sent.content}')
+            print(f'missing sent: subj:{subject_name} content:{sent.content}, return None')
+            dataset_dict[subject_name].append(None)
+
             continue
     # print(dataset_dict.keys())
     # print(dataset_dict[subject_name][0].keys())
@@ -85,7 +97,7 @@ for mat_file in tqdm(mat_files):
     # print(dataset_dict[subject_name][0]['word'][0]['word_level_EEG']['FFD'])
 
 """output"""
-output_name = 'task1-SR-dataset-with-tokens_6-25.pickle'
+# output_name = f'{task_name}-dataset-with-tokens_7-13.pickle'
 # with open(os.path.join(output_dir,'task1-SR-dataset.json'), 'w') as out:
 #     json.dump(dataset_dict,out,indent = 4)
 
@@ -98,15 +110,29 @@ with open(os.path.join(output_dir,output_name), 'wb') as handle:
 # check dataset
 with open(os.path.join(output_dir,output_name), 'rb') as handle:
     whole_dataset = pickle.load(handle)
-print(whole_dataset.keys())
-print(whole_dataset['ZAB'][1]['word_tokens_has_fixation'])
-print(whole_dataset['ZAB'][1]['word_tokens_with_mask'])
-print(whole_dataset['ZAB'][1]['word_tokens_all'])
-print()
-print(whole_dataset['ZAB'][2]['word_tokens_has_fixation'])
-print(whole_dataset['ZAB'][2]['word_tokens_with_mask'])
-print(whole_dataset['ZAB'][2]['word_tokens_all'])
-print()
-print(whole_dataset['ZDM'][0]['word_tokens_has_fixation'])
-print(whole_dataset['ZDM'][0]['word_tokens_with_mask'])
-print(whole_dataset['ZDM'][0]['word_tokens_all'])
+print('subjects:', whole_dataset.keys())
+
+if version == 'v1':
+    print('num of sent:', len(whole_dataset['ZAB']))
+    print(whole_dataset['ZAB'][1]['word_tokens_has_fixation'])
+    print(whole_dataset['ZAB'][1]['word_tokens_with_mask'])
+    print(whole_dataset['ZAB'][1]['word_tokens_all'])
+    print()
+    print(whole_dataset['ZAB'][2]['word_tokens_has_fixation'])
+    print(whole_dataset['ZAB'][2]['word_tokens_with_mask'])
+    print(whole_dataset['ZAB'][2]['word_tokens_all'])
+    print()
+    print(whole_dataset['ZDM'][0]['word_tokens_has_fixation'])
+    print(whole_dataset['ZDM'][0]['word_tokens_with_mask'])
+    print(whole_dataset['ZDM'][0]['word_tokens_all'])
+elif version == 'v2':
+    print('num of sent:', len(whole_dataset['YTL']))
+    print(whole_dataset['YTL'][1]['word_tokens_has_fixation'])
+    print(whole_dataset['YTL'][1]['word_tokens_with_mask'])
+    print(whole_dataset['YTL'][1]['word_tokens_all'])
+    print(whole_dataset['YTL'][1]['word'])
+    print()
+    print(whole_dataset['YTL'][2]['word_tokens_has_fixation'])
+    print(whole_dataset['YTL'][2]['word_tokens_with_mask'])
+    print(whole_dataset['YTL'][2]['word_tokens_all'])
+
