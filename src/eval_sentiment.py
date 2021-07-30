@@ -215,11 +215,15 @@ if __name__ == '__main__':
     # model_name = 'BaselineLSTM'
     # model_name = 'NaiveFineTunePretrainedBert'
     # model_name = 'FinetunedBertOnText'
+    # model_name = 'FinetunedBertOnText_ext'
     # model_name = 'FinetunedRoBertaOnText'
+    # model_name = 'FinetunedRoBertaOnText_ext'
     # model_name = 'FinetunedBartOnText'
+    # model_name = 'FinetunedBartOnText_ext'
     # model_name = 'FineTunePretrainedBertTwoStep'
     # model_name = 'FineTunePretrainedRoBertaTwoStep'
     # model_name = 'JointBrainTranslatorSentimentClassifier'
+
     model_name = 'ZeroShotSentimentDiscovery'
     
     if model_name == 'ZeroShotSentimentDiscovery':
@@ -229,9 +233,12 @@ if __name__ == '__main__':
         generator_name = 'BrainTranslator_skipstep1'
 
         '''choose classifier'''
-        classifier_name = 'Bert'
+        # classifier_name = 'Bert'
+        # classifier_name = 'Bert_ext'
         # classifier_name = 'Bart'
+        classifier_name = 'Bart_ext'
         # classifier_name = 'RoBerta'
+        # classifier_name = 'RoBerta_ext'
     
     print(f'[INFO] eval {model_name}')
 
@@ -250,9 +257,25 @@ if __name__ == '__main__':
     elif model_name == 'FinetunedBertOnText':
         checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bert_b32_20_0.001_unique_sent_GD_7-8.pt'
         print('loading checkpoint:', checkpoint_path)
+ 
+    elif model_name == 'FinetunedBertOnText_ext':
+        checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/On_StanfordSentitmentTreeband_pretrain_Bert_b32_20_0.001_7-19.pt'
+        print('loading checkpoint:', checkpoint_path)
 
     elif model_name == 'FinetunedBartOnText':
         checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bart_b32_20_0.001_unique_sent_GD_7-8.pt'
+        print('loading checkpoint:', checkpoint_path)
+
+    elif model_name == 'FinetunedBartOnText_ext':
+        checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/On_StanfordSentitmentTreeband_pretrain_Bart_b32_20_0.0001_7-19.pt'
+        print('loading checkpoint:', checkpoint_path)
+
+    elif model_name == 'FinetunedRoBertaOnText':
+        checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_RoBerta_b32_20_0.001_unique_sent_GD_7-8.pt'
+        print('loading checkpoint:', checkpoint_path)
+
+    elif model_name == 'FinetunedRoBertaOnText_ext':
+        checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/On_StanfordSentitmentTreeband_pretrain_RoBerta_b32_20_0.001_7-19.pt'
         print('loading checkpoint:', checkpoint_path)
     
     elif model_name == 'FineTunePretrainedBertTwoStep':
@@ -278,25 +301,26 @@ if __name__ == '__main__':
         elif generator_name == 'BrainTranslatorNaive':
             brain2text_translator_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_finetune_NaiveBartGeneration_2steptraining_b32_20_20_5e-05_5e-07_unique_sent_setting_7-12_no_PE_add_srcmask.pt'
         elif generator_name == 'BrainTranslator_skipstep1':
-            # 30 epoch:
+            # 30 epoch: current best
             # brain2text_translator_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-12_no_PE_add_srcmask.pt'
-            
-            # 50 epoch
-            # brain2text_translator_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_finetune_BartGeneration_skipstep1_b32_20_50_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
 
-            # task1,2 + taskNRv2
-            brain2text_translator_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_skipstep1_b32_20_40_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
-
+            # randomly init one:    
+            brain2text_translator_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/randinit_task1_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_0.0005_unique_sent_setting_7-21_no_PE_add_srcmask.pt'
+        
         print('loading translator checkpoint:', brain2text_translator_checkpoint)
 
         if classifier_name == 'Bert':
             sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bert_b32_20_0.001_unique_sent_GD_7-8.pt'
+        elif classifier_name == 'Bert_ext':
+            sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/On_StanfordSentitmentTreeband_pretrain_Bert_b32_20_0.001_7-19.pt'
         elif classifier_name == 'Bart':
-            sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bart_b32_20_0.001_unique_sent_GD_7-8.pt'
-            # sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bart_b32_20_0.0001_unique_sent_GD_7-8.pt'
+            sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_Bart_b32_20_0.0001_unique_sent_GD_7-8.pt'
+        elif classifier_name == 'Bart_ext':
+            sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/On_StanfordSentitmentTreeband_pretrain_Bart_b32_20_0.0001_7-19.pt'
         elif classifier_name == 'RoBerta':
             sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/Sentitment_pretrain_RoBerta_b32_20_0.001_unique_sent_GD_7-8.pt'
-
+        elif classifier_name == 'RoBerta_ext':
+            sentiment_classifier_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_pretrained/best/On_StanfordSentitmentTreeband_pretrain_RoBerta_b32_20_0.001_7-19.pt'
         print('loading classifier checkpoint:', sentiment_classifier_checkpoint)
         print()
     elif model_name == 'JointBrainTranslatorSentimentClassifier':
@@ -328,7 +352,7 @@ if __name__ == '__main__':
     ''' set up device '''
     # use cuda
     if torch.cuda.is_available():  
-        dev = "cuda:3" 
+        dev = "cuda:2" 
     else:  
         dev = "cpu"
     # CUDA_VISIBLE_DEVICES=0,1,2,3  
@@ -343,21 +367,22 @@ if __name__ == '__main__':
         whole_dataset_dict = pickle.load(handle)
     
     '''set up tokenizer'''
-    if model_name in ['FinetunedBertOnText','BaselineMLP','BaselineLSTM', 'FineTunePretrainedBertTwoStep']:
+    if model_name in ['FinetunedBertOnText','FinetunedBertOnText_ext','BaselineMLP','BaselineLSTM', 'FineTunePretrainedBertTwoStep']:
         print('[INFO]pretrained checkpoint: bert-base-cased')
         tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
-    elif model_name in ['FinetunedRoBertaOnText','FineTunePretrainedRoBertaTwoStep']:
+    elif model_name in ['FinetunedRoBertaOnText','FinetunedRoBertaOnText_ext','FineTunePretrainedRoBertaTwoStep']:
         print('[INFO]pretrained checkpoint: roberta-base')
         tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
-    elif model_name in ['ZeroShotSentimentDiscovery', 'JointBrainTranslatorSentimentClassifier', 'FinetunedBartOnText']:
+    elif model_name in ['ZeroShotSentimentDiscovery', 'JointBrainTranslatorSentimentClassifier', 'FinetunedBartOnText','FinetunedBartOnText_ext']:
         translation_tokenizer = BartTokenizer.from_pretrained('facebook/bart-large') # Bart
         tokenizer = translation_tokenizer
-        if classifier_name == 'Bert':
-            sentiment_tokenizer = BertTokenizer.from_pretrained('bert-base-cased') # Bert
-        elif classifier_name == 'Bart':
-            sentiment_tokenizer = translation_tokenizer
-        elif classifier_name == 'RoBerta':
-            sentiment_tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
+        if model_name == 'ZeroShotSentimentDiscovery':
+            if classifier_name in ['Bert','Bert_ext']:
+                sentiment_tokenizer = BertTokenizer.from_pretrained('bert-base-cased') # Bert
+            elif classifier_name in ['Bart','Bart_ext']:
+                sentiment_tokenizer = translation_tokenizer
+            elif classifier_name in ['RoBerta','RoBerta_ext']:
+                sentiment_tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
 
     ''' set up model '''
     if model_name == 'BaselineMLP':
@@ -367,14 +392,14 @@ if __name__ == '__main__':
         print('[INFO]Model: BaselineLSTM')
         # model = BaselineLSTM(input_dim = 840, hidden_dim = 256, output_dim = 3, num_layers = 1)
         model = BaselineLSTM(input_dim = 840, hidden_dim = 256, output_dim = 3, num_layers = 4)
-    elif model_name == 'FinetunedBertOnText':
-        print('[INFO]Model: FinetunedBertOnText')
+    elif model_name in ['FinetunedBertOnText','FinetunedBertOnText_ext']:
+        print('[INFO]Model: FinetunedBertOnText/FinetunedBertOnText_ext')
         model = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
-    elif model_name == 'FinetunedRoBertaOnText':
-        print('[INFO]Model: FinetunedRoBertaOnText')
+    elif model_name in ['FinetunedRoBertaOnText','FinetunedRoBertaOnText_ext']:
+        print('[INFO]Model: FinetunedRoBertaOnText/FinetunedRoBertaOnText_ext')
         model = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
-    elif model_name == 'FinetunedBartOnText':
-        print('[INFO]Model: FinetunedBartOnText')
+    elif model_name in ['FinetunedBartOnText','FinetunedBartOnText_ext']:
+        print('[INFO]Model: FinetunedBartOnText/FinetunedBartOnText_ext')
         model = BartForSequenceClassification.from_pretrained('facebook/bart-large', num_labels=3)
     elif model_name == 'FineTunePretrainedBertTwoStep':
         print('[INFO]Model: FineTunePretrainedBertTwoStep')
@@ -394,11 +419,11 @@ if __name__ == '__main__':
 
         brain2text_translator.load_state_dict(torch.load(brain2text_translator_checkpoint))
         
-        if classifier_name == 'Bert':
+        if classifier_name in ['Bert','Bert_ext']:
             sentiment_classifier = BertForSequenceClassification.from_pretrained('bert-base-cased',num_labels=3)
-        elif classifier_name == 'Bart':
+        elif classifier_name in ['Bart','Bart_ext']:
             sentiment_classifier = BartForSequenceClassification.from_pretrained('facebook/bart-large', num_labels=3)
-        elif classifier_name == 'RoBerta':
+        elif classifier_name in ['RoBerta','RoBerta_ext']:
             sentiment_classifier = RobertaForSequenceClassification.from_pretrained('roberta-base', num_labels=3)
 
         sentiment_classifier.load_state_dict(torch.load(sentiment_classifier_checkpoint))

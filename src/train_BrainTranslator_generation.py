@@ -138,14 +138,15 @@ if __name__ == '__main__':
     num_epochs_step2 = 30
     step1_lr = 5*1e-5
     step2_lr = 5*1e-7
+    
     dataset_setting = 'unique_sent'
 
     batch_size = 32
     # print('![Debug] using train batch size 1')
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation' 
     
-    # model_name = 'NaiveBartGeneration' # with no additional transformers
-    model_name = 'BartGeneration' 
+    model_name = 'NaiveBartGeneration' # with no additional transformers
+    # model_name = 'BartGeneration' 
     # model_name = 'BertGeneration'
     
     # task_name = 'task1'
@@ -157,14 +158,24 @@ if __name__ == '__main__':
     # skip_step_one = False
     skip_step_one = True
     
-    load_step1_checkpoint = True
+    load_step1_checkpoint = False
+    # load_step1_checkpoint = True
 
+    use_random_init = False
+
+    if use_random_init and skip_step_one:
+        step2_lr = 5*1e-4
+        
     print(f'[INFO]using pretrained {model_name}')
     
     if skip_step_one:
-        save_name = f'{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-13_no_PE_add_srcmask'
+        save_name = f'{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-21_no_PE_add_srcmask'
     else:
-        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-13_no_PE_add_srcmask'
+        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-21_no_PE_add_srcmask'
+    
+    if use_random_init:
+        save_name = 'randinit_' + save_name
+
     output_checkpoint_name_best = save_path + f'/best/{save_name}.pt' 
     output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
     output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/generation/{save_name}.txt'
@@ -189,7 +200,7 @@ if __name__ == '__main__':
     ''' set up device '''
     # use cuda
     if torch.cuda.is_available():  
-        dev = "cuda:2" 
+        dev = "cuda:3" 
     else:  
         dev = "cpu"
     # CUDA_VISIBLE_DEVICES=0,1,2,3  
@@ -246,8 +257,14 @@ if __name__ == '__main__':
 
     ''' set up model '''
     if model_name == 'BartGeneration':
-        pretrained = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
+        if use_random_init:
+            config = BartConfig.from_pretrained('facebook/bart-large')
+            pretrained = BartForConditionalGeneration(config)
+        else:
+            pretrained = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
+    
         model = BrainTranslator(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
+    
     elif model_name == 'BertGeneration':
         pretrained = BertLMHeadModel.from_pretrained('bert-base-cased', config=config)
         model = BrainTranslator(pretrained, in_feature = 105*len(bands_choice), decoder_embedding_size = 768, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
@@ -285,8 +302,9 @@ if __name__ == '__main__':
             # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_finetune_BartGeneration_2steptraining_b32_30_30_5e-05_5e-07_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
             # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-06_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
             # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/cutstep2_task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-06_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
+            # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_2steptraining_b32_20_30_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
             
-            stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_2steptraining_b32_20_30_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
+            stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/randinit_task1_task2_taskNRv2_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_4.9999999999999996e-06_unique_sent_setting_7-21_no_PE_add_srcmask.pt'
             print(f'skip step one, load checkpoint: {stepone_checkpoint}')
             model.load_state_dict(torch.load(stepone_checkpoint))
         else:

@@ -146,11 +146,11 @@ if __name__ == '__main__':
     # task_name = 'task1_task2_task3'
     task_name = 'task1_task2_taskNRv2'
     
-    model_name = 'BrainTranslator'
+    # model_name = 'BrainTranslator'
     # model_name = 'BrainTranslatorNaive'
-    # model_name = 'BrainTranslator_skipstep1'
+    model_name = 'BrainTranslator_skipstep1'
 
-    output_all_results_path = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/results/{task_name}-{model_name}-all_generation_results.txt'
+    output_all_results_path = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/results/{task_name}-{model_name}-all_generation_results-7_22.txt'
     ''' set random seeds '''
     seed_val = 312
     np.random.seed(seed_val)
@@ -161,7 +161,7 @@ if __name__ == '__main__':
     ''' set up device '''
     # use cuda
     if torch.cuda.is_available():  
-        dev = "cuda:2" 
+        dev = "cuda:3" 
     else:  
         dev = "cpu"
     # CUDA_VISIBLE_DEVICES=0,1,2,3  
@@ -224,7 +224,13 @@ if __name__ == '__main__':
         if model_name == 'BrainTranslator':
             checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_2steptraining_b32_20_30_5e-05_5e-07_unique_sent_setting_7-16_no_PE_add_srcmask.pt'
         elif model_name == 'BrainTranslator_skipstep1':
+            # pretrained:
             checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_skipstep1_b32_20_40_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
+            
+            # random init:
+            # checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/randinit_task1_task2_taskNRv2_finetune_BartGeneration_skipstep1_b32_20_50_5e-05_0.0005_unique_sent_setting_7-21_no_PE_add_srcmask.pt'
+        elif model_name == 'BrainTranslatorNaive':
+            checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_NaiveBartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-21_no_PE_add_srcmask.pt'
 
 
     pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
