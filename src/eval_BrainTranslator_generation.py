@@ -141,16 +141,16 @@ if __name__ == '__main__':
     
     dataset_setting = 'unique_sent'
 
-    # task_name = 'task1'
+    task_name = 'task1'
     # task_name = 'task1_task2'
     # task_name = 'task1_task2_task3'
-    task_name = 'task1_task2_taskNRv2'
+    # task_name = 'task1_task2_taskNRv2'
     
     # model_name = 'BrainTranslator'
     # model_name = 'BrainTranslatorNaive'
     model_name = 'BrainTranslator_skipstep1'
 
-    output_all_results_path = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/results/{task_name}-{model_name}-all_generation_results-7_22.txt'
+    output_all_results_path = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/results/{task_name}-{model_name}_modified_config_all_generation_results-8_15.txt'
     ''' set random seeds '''
     seed_val = 312
     np.random.seed(seed_val)
@@ -233,7 +233,14 @@ if __name__ == '__main__':
             checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_NaiveBartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-21_no_PE_add_srcmask.pt'
 
 
-    pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
+    '''set up model'''
+    num_beams = 5 # default = 1
+    repetition_penalty = 2 # default = 1, no penalty
+    print(f'[INFO]num_beams = {num_beams}\n[INFO]repetition_penalty = {repetition_penalty}')
+    pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-large',
+        num_beams = 5,
+        repetition_penalty = 2
+    )
     
     if model_name in ['BrainTranslator','BrainTranslator_skipstep1']:
         model = BrainTranslator(pretrained_bart, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)
@@ -248,5 +255,5 @@ if __name__ == '__main__':
     ''' eval '''
     eval_model(dataloaders, device, tokenizer, criterion, model, output_all_results_path = output_all_results_path)
 
-    print(f'[INFO]loading checkpoint: {checkpoint_path}')
+    print(f'[INFO]loaded checkpoint: {checkpoint_path}')
     print(f'[INFO]the score is on task: {task_name}, model: {model_name}')

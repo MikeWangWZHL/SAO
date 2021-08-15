@@ -145,14 +145,14 @@ if __name__ == '__main__':
     # print('![Debug] using train batch size 1')
     save_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation' 
     
-    model_name = 'NaiveBartGeneration' # with no additional transformers
-    # model_name = 'BartGeneration' 
+    # model_name = 'NaiveBartGeneration' # with no additional transformers
+    model_name = 'BartGeneration' 
     # model_name = 'BertGeneration'
     
-    # task_name = 'task1'
+    task_name = 'task1'
     # task_name = 'task1_task2'
     # task_name = 'task1_task2_task3'
-    task_name = 'task1_task2_taskNRv2'
+    # task_name = 'task1_task2_taskNRv2'
 
 
     # skip_step_one = False
@@ -169,9 +169,9 @@ if __name__ == '__main__':
     print(f'[INFO]using pretrained {model_name}')
     
     if skip_step_one:
-        save_name = f'{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-21_no_PE_add_srcmask'
+        save_name = f'modified_config_{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_8-15_no_PE_add_srcmask'
     else:
-        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_7-21_no_PE_add_srcmask'
+        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_9-15_no_PE_add_srcmask'
     
     if use_random_init:
         save_name = 'randinit_' + save_name
@@ -303,7 +303,6 @@ if __name__ == '__main__':
             # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-06_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
             # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/cutstep2_task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-06_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
             # stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_taskNRv2_finetune_BartGeneration_2steptraining_b32_20_30_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
-            
             stepone_checkpoint = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/randinit_task1_task2_taskNRv2_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_4.9999999999999996e-06_unique_sent_setting_7-21_no_PE_add_srcmask.pt'
             print(f'skip step one, load checkpoint: {stepone_checkpoint}')
             model.load_state_dict(torch.load(stepone_checkpoint))

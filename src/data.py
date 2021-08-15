@@ -25,7 +25,6 @@ def normalize_1d(input_tensor):
     input_tensor = (input_tensor - mean)/std
     return input_tensor 
 
-
 def get_input_sample(sent_obj, tokenizer, eeg_type = 'GD', bands = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'], max_len = 56, add_CLS_token = False):
     
     def get_word_embedding_eeg_tensor(word_obj, eeg_type, bands):
@@ -384,8 +383,6 @@ class ZuCo_dataset_trainMapping(Dataset):
     def __getitem__(self, idx):
         input_sample = self.inputs[idx]
         return input_sample[0], input_sample[1], input_sample[2] # (eeg feature, hiddenstates feature, target_token)
-
-
 
 
 
