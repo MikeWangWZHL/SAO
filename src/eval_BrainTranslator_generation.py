@@ -60,7 +60,12 @@ def eval_model(dataloaders, device, tokenizer, criterion, model, output_all_resu
             # target_ids_batch_label[target_ids_batch_label == tokenizer.pad_token_id] = -100
 
             # forward
-            seq2seqLMoutput = model(input_embeddings_batch, input_masks_batch, input_mask_invert_batch, target_ids_batch)
+            seq2seqLMoutput = model(
+                input_embeddings_batch, 
+                input_masks_batch, 
+                input_mask_invert_batch, 
+                target_ids_batch
+            )
 
             """calculate loss"""
             # logits = seq2seqLMoutput.logits # 8*48*50265
@@ -128,8 +133,17 @@ def eval_model(dataloaders, device, tokenizer, criterion, model, output_all_resu
 if __name__ == '__main__':    
     ''' config param'''
     batch_size = 1
+    dataset_setting = 'unique_sent'
+
+    # task_name = 'task1'
+    task_name = 'task1_task2'
+    # task_name = 'task1_task2_task3'
+    # task_name = 'task1_task2_taskNRv2'
     
-    subject_choice = 'ALL'
+    # subject_choice = 'FirstHalf'
+    subject_choice = 'Half_Half'
+    
+    # subject_choice = 'ALL'
     # subject_choice = 'ZAB'
     # print(f'![Debug]using {subject_choice}')
     # print(f'![Debug]using ZPH')
@@ -139,18 +153,12 @@ if __name__ == '__main__':
     bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
     print(f'[INFO]using bands {bands_choice}')
     
-    dataset_setting = 'unique_sent'
-
-    task_name = 'task1'
-    # task_name = 'task1_task2'
-    # task_name = 'task1_task2_task3'
-    # task_name = 'task1_task2_taskNRv2'
     
     # model_name = 'BrainTranslator'
     # model_name = 'BrainTranslatorNaive'
     model_name = 'BrainTranslator_skipstep1'
 
-    output_all_results_path = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/results/{task_name}-{model_name}_modified_config_all_generation_results-8_15.txt'
+    output_all_results_path = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/results/subj-{subject_choice}-{task_name}-{model_name}_all_generation_results-8_15.txt'
     ''' set random seeds '''
     seed_val = 312
     np.random.seed(seed_val)
@@ -209,12 +217,20 @@ if __name__ == '__main__':
         elif model_name == 'BrainTranslatorNaive':
             checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_finetune_NaiveBartGeneration_2steptraining_b32_20_20_5e-05_5e-07_unique_sent_setting_7-12_no_PE_add_srcmask.pt'
         elif model_name == 'BrainTranslator_skipstep1':
-            checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-12_no_PE_add_srcmask.pt'
+            if subject_choice == 'All':
+                checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-12_no_PE_add_srcmask.pt'
+            elif subject_choice == 'FirstHalf':
+                checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/subj-FirstHalf_task1_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_8-16_no_PE_add_srcmask.pt'
     elif task_name == 'task1_task2':
         if model_name == 'BrainTranslator':
             checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_finetune_BartGeneration_2steptraining_b32_30_30_5e-05_5e-07_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
         elif model_name == 'BrainTranslator_skipstep1':
-            checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
+            if subject_choice == 'All':
+                checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_7-13_no_PE_add_srcmask.pt'
+            elif subject_choice == 'FirstHalf':
+                checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/subj-FirstHalf_task1_task2_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_8-16_no_PE_add_srcmask.pt'
+            elif subject_choice == 'Half_Half':
+                checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/subj-Half_Half_task1_task2_finetune_BartGeneration_skipstep1_b32_20_30_5e-05_5e-07_unique_sent_setting_8-16_no_PE_add_srcmask.pt'
     elif task_name == 'task1_task2_task3':
         if model_name == 'BrainTranslator':
             checkpoint_path = '/shared/nas/data/m1/wangz3/SAO_project/SAO/checkpoints_generation/best/task1_task2_task3_finetune_BartGeneration_2steptraining_b32_30_40_5e-05_1e-07_unique_sent_setting_7-10_no_PE_add_srcmask.pt'
@@ -234,13 +250,10 @@ if __name__ == '__main__':
 
 
     '''set up model'''
-    num_beams = 5 # default = 1
-    repetition_penalty = 2 # default = 1, no penalty
-    print(f'[INFO]num_beams = {num_beams}\n[INFO]repetition_penalty = {repetition_penalty}')
-    pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-large',
-        num_beams = 5,
-        repetition_penalty = 2
-    )
+    # num_beams = 5 # default = 1
+    # repetition_penalty = 2 # default = 1, no penalty
+    # print(f'[INFO]num_beams = {num_beams}\n[INFO]repetition_penalty = {repetition_penalty}')
+    pretrained_bart = BartForConditionalGeneration.from_pretrained('facebook/bart-large')
     
     if model_name in ['BrainTranslator','BrainTranslator_skipstep1']:
         model = BrainTranslator(pretrained_bart, in_feature = 105*len(bands_choice), decoder_embedding_size = 1024, additional_encoder_nhead=8, additional_encoder_dim_feedforward = 2048)

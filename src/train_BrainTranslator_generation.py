@@ -149,11 +149,22 @@ if __name__ == '__main__':
     model_name = 'BartGeneration' 
     # model_name = 'BertGeneration'
     
-    task_name = 'task1'
-    # task_name = 'task1_task2'
+    # task_name = 'task1'
+    task_name = 'task1_task2'
     # task_name = 'task1_task2_task3'
     # task_name = 'task1_task2_taskNRv2'
 
+    # subject_choice = 'ALL'
+    # subject_choice = 'FirstHalf'
+    # subject_choice = 'SecondHalf'
+    subject_choice = 'Half_Half'
+
+    print(f'![Debug]using {subject_choice}')
+    eeg_type_choice = 'GD'
+    print(f'[INFO]eeg type {eeg_type_choice}')
+    # bands_choice = ['_t1'] 
+    bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
+    print(f'[INFO]using bands {bands_choice}')
 
     # skip_step_one = False
     skip_step_one = True
@@ -169,9 +180,9 @@ if __name__ == '__main__':
     print(f'[INFO]using pretrained {model_name}')
     
     if skip_step_one:
-        save_name = f'modified_config_{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_8-15_no_PE_add_srcmask'
+        save_name = f'subj-{subject_choice}_{task_name}_finetune_{model_name}_skipstep1_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_8-16_no_PE_add_srcmask'
     else:
-        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_9-15_no_PE_add_srcmask'
+        save_name = f'{task_name}_finetune_{model_name}_2steptraining_b{batch_size}_{num_epochs_step1}_{num_epochs_step2}_{step1_lr}_{step2_lr}_{dataset_setting}_setting_8-16_no_PE_add_srcmask'
     
     if use_random_init:
         save_name = 'randinit_' + save_name
@@ -180,13 +191,7 @@ if __name__ == '__main__':
     output_checkpoint_name_last = save_path + f'/last/{save_name}.pt' 
     output_log_file_name = f'/shared/nas/data/m1/wangz3/SAO_project/SAO/log/generation/{save_name}.txt'
 
-    subject_choice = 'ALL'
-    print(f'![Debug]using {subject_choice}')
-    eeg_type_choice = 'GD'
-    print(f'[INFO]eeg type {eeg_type_choice}')
-    # bands_choice = ['_t1'] 
-    bands_choice = ['_t1','_t2','_a1','_a2','_b1','_b2','_g1','_g2'] 
-    print(f'[INFO]using bands {bands_choice}')
+    
 
 
     
@@ -254,7 +259,7 @@ if __name__ == '__main__':
     val_dataloader = DataLoader(dev_set, batch_size = 1, shuffle=False, num_workers=4)
     # dataloaders
     dataloaders = {'train':train_dataloader, 'dev':val_dataloader}
-
+    
     ''' set up model '''
     if model_name == 'BartGeneration':
         if use_random_init:

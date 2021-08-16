@@ -147,17 +147,32 @@ class ZuCo_dataset(Dataset):
         if not isinstance(input_dataset_dicts,list):
             input_dataset_dicts = [input_dataset_dicts]
         print(f'[INFO]loading {len(input_dataset_dicts)} task datasets')
-        for input_dataset_dict in input_dataset_dicts:
+        for dataset_idx in range(len(input_dataset_dicts)):
+            input_dataset_dict = input_dataset_dicts[dataset_idx]
             if subject == 'ALL':
                 subjects = list(input_dataset_dict.keys())
-                print('[INFO]using subjects: ', subjects)
-                # if version == 'v1':
-                #     subjects = ['ZAB', 'ZDM', 'ZGW', 'ZJM', 'ZJN', 'ZJS', 'ZKB', 'ZKH', 'ZKW', 'ZMG', 'ZPH'] # skip 'ZDN' 
-                # elif version == 'v2':
-                #     subjects = ['YSD','YAC','YDG','YLS','YMS','YHS','YIS','YSL','YFR','YTL','YRH','YAG','YFS','YRK','YAK','YRP','YDR','YMD']
+            elif subject == 'FirstHalf':
+                all_subjects = list(input_dataset_dict.keys())
+                subjects = all_subjects[:int(len(all_subjects)/2)]
+            elif subject == 'SecondHalf':
+                all_subjects = list(input_dataset_dict.keys())
+                subjects = all_subjects[int(len(all_subjects)/2):]
+            elif subject == 'Half_Half' and len(input_dataset_dicts) == 2:
+                if dataset_idx == 0:
+                    print(f'using first half for task {dataset_idx}')    
+                    all_subjects = list(input_dataset_dict.keys())
+                    subjects = all_subjects[:int(len(all_subjects)/2)]
+                elif dataset_idx == 1:
+                    print(f'using second half for task {dataset_idx}')    
+                    all_subjects = list(input_dataset_dict.keys())
+                    subjects = all_subjects[int(len(all_subjects)/2):]
             else:
-                subjects = [subject]
-            
+                if isinstance(subject,str):
+                    subjects = [subject]
+                elif isinstance(subject,list):
+                    subjects = subject
+            print('[INFO]using subjects: ', subjects)
+
             total_num_sentence = len(input_dataset_dict[subjects[0]])
             
             train_divider = int(0.8*total_num_sentence)

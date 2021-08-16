@@ -34,8 +34,7 @@ class BrainTranslator(nn.Module):
         
         # encoded_embedding = self.additional_encoder(input_embeddings_batch) 
         encoded_embedding = F.relu(self.fc1(encoded_embedding))
-        out = self.pretrained(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = target_ids_batch_converted)                    
-        
+        out = self.pretrained(inputs_embeds = encoded_embedding, attention_mask = input_masks_batch, return_dict = True, labels = target_ids_batch_converted)
         return out
 
 class BrainTranslatorNaive(nn.Module):
